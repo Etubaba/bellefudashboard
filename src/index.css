@@ -16,3 +16,19 @@ code {
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input:focus{
   outline: rgb(118 186 27) solid 2px;
 }
+
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(197, 197, 197);
+
+  border-radius: 10px;
+}

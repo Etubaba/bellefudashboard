@@ -196,7 +196,7 @@ function Expired() {
       <div
         style={{
           position: "relative",
-          left: isDrawerOpen.drawer ? "41%" : "49%",
+          left: isDrawerOpen.drawer ? "37%" : "49%",
         }}
       >
         <form>
