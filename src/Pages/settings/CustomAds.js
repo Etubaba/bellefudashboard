@@ -218,7 +218,7 @@ export default function AdminList() {
         },
         slide: {
 
-            width: "70%",
+            width: "80%",
             position: "absolute",
             top: "50%",
             left: "50%",
@@ -323,21 +323,6 @@ export default function AdminList() {
                                     </TableCell>
                                     <TableCell >
                                         <Box >
-
-
-
-
-                                            <Tooltip title='View Image'>
-                                                <IconButton
-                                                    onClick={() => {
-                                                        setPushId(row.id)
-                                                        setOpen2(true)
-
-                                                    }}
-                                                >
-                                                    <Icons.RemoveRedEye sx={{ color: "grey" }} />
-                                                </IconButton>
-                                            </Tooltip>
                                             <Tooltip title='Edit Ad'>
                                                 <IconButton
                                                     onClick={() => {
@@ -361,17 +346,13 @@ export default function AdminList() {
                                                 </IconButton>
                                             </Tooltip>
 
-
-
-
-
                                             {/* delete Modal */}
                                             <Modal
                                                 open={open}
                                                 onClose={() => setOpen(false)}
                                                 aria-labelledby="modal-modal-title"
                                                 aria-describedby="modal-modal-description"
-
+                                                opacity={0.3}
                                             >
                                                 <Box sx={modal.edit}>
                                                     <Box sx={{ margin: 'auto 42%' }}>
@@ -456,7 +437,7 @@ export default function AdminList() {
 
 
                                                             </div>
-                                                            <div>
+                                                            <div style={{ ml: -7 }}>
                                                                 <label htmlFor="upload-button-file">
                                                                     <input
                                                                         accept="image/*"
