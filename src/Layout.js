@@ -106,6 +106,7 @@ export default function MiniDrawer() {
     const [cat, setCat] = useState(false);
     const [report, setReport] = useState(false);
     const [setting, setSetting] = useState(false);
+    const [custom, setCustom] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -697,6 +698,78 @@ export default function MiniDrawer() {
                             </NavLink>
                         </List>
                     </Collapse>
+                    <ListItem button onClick={() => setCustom(!custom)}>
+                        <ListItemIcon>
+                            <Icons.SupportAgent sx={{ color: "rgb(118 186 27)" }} />
+                        </ListItemIcon>
+                        <ListItemText primary='Custom' />
+                        {report ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={custom} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+
+
+                            <NavLink
+                                to='customads'
+                                style={({ isActive }) => ({
+                                    color: isActive ? "#ffffff" : "#757575",
+                                    background: isActive ? colors.primary : "#ffffff",
+                                    display: "flex",
+                                    // padding: "6px 6.6vw 4px 18px",
+                                    textDecoration: "none",
+                                    borderRadius: "50px 0 0 50px"
+                                })}
+                            >
+
+                                <ListItem button sx={{ pl: 6 }}>
+                                    <ListItemIcon>
+                                        <Icons.ViewCarousel sx={{ color: "rgb(118 186 27)" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Custom Ads" />
+                                </ListItem>
+                            </NavLink>
+                            <NavLink
+                                to='createads'
+                                style={({ isActive }) => ({
+                                    color: isActive ? "#ffffff" : "#757575",
+                                    background: isActive ? colors.primary : "#ffffff",
+                                    display: "flex",
+                                    // padding: "6px 6.6vw 4px 18px",
+                                    textDecoration: "none",
+                                    borderRadius: "50px 0 0 50px"
+                                })}
+                            >
+
+                                <ListItem button sx={{ pl: 6 }}>
+                                    <ListItemIcon>
+                                        <Icons.ViewCarouselOutlined sx={{ color: "rgb(118 186 27)" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Create Ads" />
+                                </ListItem>
+                            </NavLink>
+
+
+                            <NavLink
+                                to='customrequest'
+                                style={({ isActive }) => ({
+                                    color: isActive ? "#ffffff" : "#757575",
+                                    background: isActive ? colors.primary : "#ffffff",
+                                    display: "flex",
+                                    // padding: "6px 6.6vw 4px 18px",
+                                    textDecoration: "none",
+                                    borderRadius: "50px 0 0 50px"
+                                })}
+                            >
+
+                                <ListItem button sx={{ pl: 6 }}>
+                                    <ListItemIcon>
+                                        <Icons.SupportAgent sx={{ color: "rgb(118 186 27)" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Custom Request" />
+                                </ListItem>
+                            </NavLink>
+                        </List>
+                    </Collapse>
 
 
                     <ListItem button onClick={() => setSetting(!setting)}>
@@ -766,6 +839,27 @@ export default function MiniDrawer() {
                                         <Icons.CasesOutlined sx={{ color: "rgb(118 186 27)" }} />
                                     </ListItemIcon>
                                     <ListItemText primary="Ads Plan" />
+                                </ListItem>
+                            </NavLink>
+
+
+                            <NavLink
+                                to='valueads'
+                                style={({ isActive }) => ({
+                                    color: isActive ? "#ffffff" : "#757575",
+                                    background: isActive ? colors.primary : "#ffffff",
+                                    display: "flex",
+                                    // padding: "6px 6.6vw 4px 18px",
+                                    textDecoration: "none",
+                                    borderRadius: "50px 0 0 50px"
+                                })}
+                            >
+
+                                <ListItem button sx={{ pl: 6 }}>
+                                    <ListItemIcon>
+                                        <Icons.FlagOutlined sx={{ color: "rgb(118 186 27)" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Our Value" />
                                 </ListItem>
                             </NavLink>
                         </List>

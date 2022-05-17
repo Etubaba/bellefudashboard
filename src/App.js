@@ -49,6 +49,10 @@ import FileUpload from "./Pages/settings/upload/FileUpload";
 import CreatePush from "./Pages/notification/CreatePush";
 import Pushnotification from "./Pages/notification/Pushnotification";
 import EditProfile from "./Pages/Profiles/EditProfile";
+import CustomRequest from "./Pages/settings/CustomRequest";
+import CustomAds from "./Pages/settings/CustomAds";
+import OurValueAds from "./Pages/settings/OurValueAds";
+import CreateCustomads from "./Pages/settings/CreateCustomads";
 
 function App() {
   return (
@@ -107,6 +111,10 @@ function App() {
           </Route>
 
           <Route path="country" element={<Country />} />
+          <Route path="customrequest" element={<CustomRequest />} />
+          <Route path="customads" element={<CustomAds />} />
+          <Route path="valueads" element={<OurValueAds />} />
+          <Route path="createads" element={<CreateCustomads />} />
 
           <Route path="idveri" element={<IDverification />} />
           <Route path="kycveri" element={<KYCverification />} />
