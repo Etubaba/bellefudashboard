@@ -154,16 +154,19 @@ export default function CategoryList() {
                 "Content-Type": "multipart/form-data",
             }
         })
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.data.status) {
+                    setOpen2(false)
+                    toast.success('Category Updated', {
+                        position: 'top-right'
+                    })
+                }
+            })
             .catch(err => console.log(err))
 
 
 
-        setOpen2(false)
 
-        toast.success('Category Updated', {
-            position: 'top-right'
-        })
         window.location.reload(false)
     }
 
@@ -182,14 +185,17 @@ export default function CategoryList() {
                 "Content-Type": "multipart/form-data",
             }
         })
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.data.status) {
+                    toast.error('Category deleted', {
+                        position: 'top-right'
+                    })
+                    setOpen(false)
+                }
+            })
             .catch(err => console.log(err))
 
-        toast.error('Category deleted', {
-            position: 'top-right'
-        })
 
-        setOpen(false)
         window.location.reload(false)
     }
 

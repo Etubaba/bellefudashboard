@@ -141,7 +141,7 @@ function ProductList() {
             const { data } = await axios.get(`${APIDATA}list/products?page=${page}`);
             setProductList(data.data.data);
             setInitialProducts(data.data.data)
-            setTotalSearch(data.data.data.total)
+            setTotalSearch(data.data.total);
             setIsLoading(false);
         } catch (error) {
             setIsLoading(true);
@@ -206,6 +206,9 @@ function ProductList() {
         }
 
     };
+
+
+
     return (
         <div className={css(lolo.container)}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -319,7 +322,7 @@ function ProductList() {
                                                     <Grid item xs={3} sx={{ paddingLeft: 0 }}>
                                                         <Item>
                                                             <img
-                                                                src="https://www.linkpicture.com/q/WhatsApp-Image-2022-02-12-at-10.03.02-PM.jpeg"
+                                                                src={`https://bellefu.inmotionhub.xyz/get/product/image/${product?.image}`}
                                                                 alt="iuujhbb"
                                                                 className={css(lolo.productImg)}
                                                             />
@@ -497,23 +500,26 @@ function ProductList() {
                                     style={{ display: "flex", alignItems: "center" }}
 
                                 >
-                                    <label>Back</label>
                                     <Icons.ArrowBackIos
-                                        sx={{ cursor: "pointer", color: "#76BA1B", marginLeft: "5px" }}
+                                        sx={{ cursor: "pointer", mr: 2, color: "#76BA1B", marginLeft: "5px" }}
                                     />
+                                    <label>Back</label>
+
                                 </div>
                             </IconButton>}
+                        <label style={{ fontWeight: 'bold', fontSize: 18 }}>Page :{' '}{page}</label>
 
-                        {((productList.length > 0) && (totalSearch > 25)) ? (
+                        {((productList.length > 0) && (totalSearch >= 25)) ? (
                             <IconButton onClick={() => setPage(page + 1)}>
                                 <div
                                     style={{ display: "flex", alignItems: "center" }}
 
                                 >
-                                    <Icons.ArrowForwardIos
-                                        sx={{ cursor: "pointer", color: "#76BA1B" }}
-                                    />
                                     <label>Next</label>
+                                    <Icons.ArrowForwardIos
+                                        sx={{ cursor: "pointer", ml: 2, color: "#76BA1B" }}
+                                    />
+
                                 </div>
                             </IconButton>
                         ) : null}

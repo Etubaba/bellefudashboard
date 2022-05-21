@@ -11,6 +11,7 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { colors } from '../../Constant';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
+
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [

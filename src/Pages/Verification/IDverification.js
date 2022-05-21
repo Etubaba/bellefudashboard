@@ -7,7 +7,7 @@ import TableRow from "@mui/material/TableRow";
 
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel'
+import SliderCompo from './SliderCompo'
 import {
     Paper,
     // Fade,
@@ -45,6 +45,7 @@ export default function AdminList() {
     const [open3, setOpen3] = useState(false)
     const [pushId, setPushId] = useState(null)
     const [reason, setReason] = useState()
+    const [image, setImage] = useState(null)
 
 
     const handleChangePage = (event, newPage) => {
@@ -174,6 +175,12 @@ export default function AdminList() {
 
         }
     }
+
+
+
+
+
+
     return (
         <Box>
             <Box style={{ display: "flex", justifyContent: "space-between" }}>
@@ -233,6 +240,7 @@ export default function AdminList() {
                                                     onClick={() => {
 
                                                         setPushId(row.id)
+                                                        setImage(row.value)
                                                         setOpen2(true)
 
                                                     }}
@@ -276,24 +284,9 @@ export default function AdminList() {
                                                 aria-describedby="modal-modal-description"
                                             // sx={{ opacity: 0.3 }}
                                             >
-                                                {/* <Paper
-                                                    sx={modalstyle}
-                                                > */}
+
                                                 <Box sx={modal.slide}>
-                                                    <Carousel style={{ height: 100 }}>
-                                                        <div>
-                                                            <img style={{ height: "60%", width: "100%" }} src="https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60" />
-
-                                                        </div>
-                                                        <div>
-                                                            <img style={{ height: "60%", width: "100%" }} src="https://cdn.pixabay.com/photo/2022/02/26/18/16/peace-7036144__340.png" />
-
-                                                        </div>
-                                                        <div>
-                                                            <img style={{ height: "60%", width: "100%" }} src="https://cdn.pixabay.com/photo/2020/01/23/16/42/embrace-4788167__340.jpg" />
-
-                                                        </div>
-                                                    </Carousel>
+                                                    <SliderCompo image={image} />
                                                 </Box>
                                             </Modal>
 
@@ -368,6 +361,20 @@ export default function AdminList() {
                                 </TableRow>
                             ))}
                     </TableBody>
+
+                    {/* 
+                    <Modal
+                        open={open2}
+                        onClose={() => setOpen2(false)}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    // sx={{ opacity: 0.3 }}
+                    >
+
+                        <Box sx={modal.slide}>
+                            <SliderCompo image={image} />
+                        </Box>
+                    </Modal> */}
                 </Table>
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 200]}
