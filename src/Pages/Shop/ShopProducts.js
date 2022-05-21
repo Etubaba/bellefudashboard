@@ -45,11 +45,12 @@ const ShopProducts = () => {
     <div>
       { shopProducts.length && 
         <>
-          <h1 style={{textAlign: "center",}}><span>Shop Name</span> <span style={{textTransform: "uppercase"}}>{shopProducts[0].shopName}</span></h1> 
+          <h1 style={{textAlign: "center",}}><span style={{textTransform: "uppercase"}}>{shopProducts[0].shopName}</span></h1>
+          <hr />
           <div>
             {shopProducts.map(shopProduct => (<div style={itemStyle}>
               <div>
-                <img src={`https://bellefu.inmotionhub.xyz/get/product/image/${shopProduct.images[0]}`} alt={shopProduct.title} width={200} height={200} />
+                <img src={`https://bellefu.inmotionhub.xyz/get/product/image/${shopProduct.images[0]}`} alt={shopProduct.title} width={220} height={220} />
               </div>
               <div style={{paddingLeft: "15px"}}>
                 <p><span>Name</span>: {shopProduct.title}</p>

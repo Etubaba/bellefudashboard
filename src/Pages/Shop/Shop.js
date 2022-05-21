@@ -30,7 +30,7 @@ import Divider from '@mui/material/Divider'
 import { styled } from '@mui/material/styles';
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { useDispatch } from 'react-redux'
-import { subcat, updateShopSlug } from '../../Features/LoginSlice';
+import { subcat } from '../../Features/LoginSlice';
 import Tooltip from '@mui/material/Tooltip';
 import { APIDATA, PageTitle, CircularIndeterminate } from "../../Constant"
 import axios from "axios";
