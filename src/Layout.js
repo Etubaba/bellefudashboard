@@ -529,7 +529,7 @@ export default function MiniDrawer() {
                     </NavLink>
 
                     <NavLink
-                        to='construction'
+                        to='shop'
                         style={({ isActive }) => ({
                             color: isActive ? "#ffffff" : "#757575",
                             background: isActive ? colors.primary : "#ffffff",

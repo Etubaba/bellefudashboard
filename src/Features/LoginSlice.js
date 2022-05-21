@@ -7,8 +7,8 @@ const initialState = {
     profiles: localStorage.getItem('prof') ? JSON.parse(localStorage.getItem('prof')) : null,
     category_id: null,
     userStatus: null,
-    adminRole: localStorage.getItem('role') ? localStorage.getItem('role') : null
-
+    adminRole: localStorage.getItem('role') ? localStorage.getItem('role') : null,
+    shopSlug: null,
 }
 
 
@@ -43,17 +43,29 @@ const LoginSlice = createSlice({
             // state.adminRole.push(action.payload)
             localStorage.setItem('role', state.adminRole)
         },
-
         updateProfileDetails: (state, action) => {
-            console.log("redux called")
             state.profiles = action.payload;
             localStorage.setItem('prof', JSON.stringify(action.payload));
+        },
+        updateShopSlug: (state, action) => {
+            state.shopSlug = action.payload;
+            localStorage.setItem("shopId", action.payload);
         }
     },
 
 
 })
 
-export const { loggedOut, loggedIn, drawerOpen, profileDetails, subcat, updateProfileDetails, colorsUpdate, roles } = LoginSlice.actions
+export const { 
+    loggedOut, 
+    loggedIn, 
+    drawerOpen, 
+    profileDetails, 
+    subcat, 
+    updateProfileDetails, 
+    colorsUpdate, 
+    roles, 
+    updateShopSlug, 
+} = LoginSlice.actions
 export const loginStatus = (state) => state.login
 export default LoginSlice.reducer
