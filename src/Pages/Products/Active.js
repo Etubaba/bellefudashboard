@@ -148,7 +148,7 @@ function Active() {
       );
       setInitialProducts(data.data.data);
       setActiveProducts(data.data.data);
-      setTotalSearch(data.data.data.total)
+      setTotalSearch(data.data.total)
       setIsLoading(false);
     } catch (error) {
       console.log("error", error);
@@ -231,7 +231,7 @@ function Active() {
       try {
         const response = await axios.get(`${APIDATA}search/products/${input.toLocaleLowerCase()}`);
         setActiveProducts(response.data.data.data);
-        setTotalSearch(response.data.data.total)
+        setTotalSearch(response.data.total)
       } catch (error) {
         console.log(`Search error due to: ${error.message}`);
       }
@@ -241,6 +241,9 @@ function Active() {
     }
 
   };
+
+
+  console.log('toal', totalSearch)
   return (
     <div className={css(lolo.container)}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -347,7 +350,7 @@ function Active() {
                           <Grid item xs={3} sx={{ paddingLeft: 0 }}>
                             <Item>
                               <img
-                                src="https://www.linkpicture.com/q/WhatsApp-Image-2022-02-12-at-10.03.02-PM.jpeg"
+                                src={`https://bellefu.inmotionhub.xyz/get/product/image/${product?.image}`}
                                 alt="iuujhbb"
                                 className={css(lolo.productImg)}
                               />
@@ -789,11 +792,11 @@ function Active() {
                 <div
                   style={{ display: "flex", alignItems: "center" }}
 
-                >
-                  <label>Back</label>
-                  <Icons.ArrowBackIos
+                ><Icons.ArrowBackIos
                     sx={{ cursor: "pointer", color: "#76BA1B", marginLeft: "5px" }}
                   />
+                  <label>Back</label>
+
                 </div>
               </IconButton>
             }
@@ -805,11 +808,11 @@ function Active() {
                 <div
                   style={{ display: "flex", alignItems: "center" }}
 
-                >
+                ><label>Next</label>
                   <Icons.ArrowForwardIos
                     sx={{ cursor: "pointer", color: "#76BA1B" }}
                   />
-                  <label>Next</label>
+
                 </div>
               </IconButton>
             ) : null}

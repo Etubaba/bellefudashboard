@@ -28,7 +28,7 @@ import axios from "axios";
 
 import { toast } from "react-toastify";
 
-
+import SliderCompo from "./SliderCompo";
 
 export default function AdminList() {
     const [page, setPage] = useState(0);
@@ -39,6 +39,7 @@ export default function AdminList() {
     const [open3, setOpen3] = useState(false)
     const [pushId, setPushId] = useState(null)
     const [reason, setReason] = useState()
+    const [image, setImage] = useState(null)
 
 
 
@@ -230,7 +231,7 @@ export default function AdminList() {
                                                     <Tooltip title='View documents'>
                                                         <IconButton
                                                             onClick={() => {
-
+                                                                setImage(row.value)
                                                                 setPushId(row.id)
                                                                 setOpen2(true)
 
@@ -280,18 +281,7 @@ export default function AdminList() {
                                                 > */}
                                                         <Box sx={modal.slide}>
                                                             <Carousel style={{ height: 100 }}>
-                                                                <div>
-                                                                    <img style={{ height: "60%", width: "100%" }} src="https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60" />
-
-                                                                </div>
-                                                                <div>
-                                                                    <img style={{ height: "60%", width: "100%" }} src="https://cdn.pixabay.com/photo/2022/02/26/18/16/peace-7036144__340.png" />
-
-                                                                </div>
-                                                                <div>
-                                                                    <img style={{ height: "60%", width: "100%" }} src="https://cdn.pixabay.com/photo/2020/01/23/16/42/embrace-4788167__340.jpg" />
-
-                                                                </div>
+                                                                <SliderCompo image={image} />
                                                             </Carousel>
                                                         </Box>
                                                     </Modal>

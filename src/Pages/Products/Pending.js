@@ -380,7 +380,7 @@ function Pending() {
                           <Grid item xs={3} sx={{ paddingLeft: 0 }}>
                             <Item>
                               <img
-                                src="https://www.linkpicture.com/q/WhatsApp-Image-2022-02-12-at-10.03.02-PM.jpeg"
+                                src={`https://bellefu.inmotionhub.xyz/get/product/image/${product?.image}`}
                                 alt="iuujhbb"
                                 className={css(lolo.productImg)}
                               />
