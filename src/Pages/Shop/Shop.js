@@ -248,17 +248,17 @@ export default function Shops() {
                                             alt='error'
                                             src={`https://bellefu.inmotionhub.xyz/get/store/image/${row.logo}`} />
                                     </TableCell>
-                                    <TableCell><Link to={`/shop/${row.id}`}>{row.name}</Link></TableCell>
+                                    <TableCell style={{font: "20px", fontWeight: "bold"}}>{row.name}</TableCell>
                                     <TableCell >{row.description}</TableCell>
                                     <TableCell >{row.slug}</TableCell>
 
                                     <TableCell >
                                         <Box >
-                                            <Tooltip title='View Category'>
+                                            <Tooltip title='View Products'>
 
                                                 <IconButton onClick={() => {
-                                                    dispatch(subcat(row.id))
-                                                    navigate('/selectedcat')
+                                                    //dispatch(subcat(row.id))
+                                                    navigate(`/shop/${row.id}`)
 
 
                                                 }} >

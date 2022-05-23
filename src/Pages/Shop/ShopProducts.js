@@ -1,71 +1,65 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { CircularIndeterminate } from "../../Constant";
+import ShopProduct from "./shopProduct";
 
 const ShopProducts = () => {
   //const shopSlug = useSelector(state => state.login.shopSlug);
+  const navigate = useNavigate();
   const {shopSlug} = useParams();
+  const [isLoading, setLoading] = useState(false);
   const [shopProducts, setShopProducts] = useState([]);
+  const [displayPerPage, setDisplayPerPage] = useState(3);
+  const [showMoreProducts, setShowMoreProducts] = useState(false);
+
+  const viewMore = () => {
+    let currentPageDisplay = displayPerPage;
+    if (shopProducts.length > displayPerPage) {
+      currentPageDisplay += 4;
+      setDisplayPerPage(currentPageDisplay);
+    } else {
+      setShowMoreProducts(false);
+    }
+  }
 
   useEffect(() => {
     const getShopProducts = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(`https://bellefu.inmotionhub.xyz/api/shop/view/single/${shopSlug}`);
+        if (res.data.data.length > 3) {
+          setShowMoreProducts(true);
+        }
         setShopProducts(res.data.data);
+        setLoading(false);
       } catch (error) {
         console.log(error.message);
+        setLoading(false);
       }
     }
 
     if (shopSlug) getShopProducts();
   }, [shopSlug]);
 
+  // useEffect(() => {
+  //   if (shopProducts.length <= displayPerPage) setShowMoreProducts(true);
+  // }, [displayPerPage, shopProducts.length])
 
-  const containerStyle = {
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    //justifyContent: "space-between",
-  }
-  const itemStyle = {
-    ...containerStyle,
-  }
-  const descriptionStyle = {
-    ...containerStyle,
-    justifyContent: "space-between",
-    flexWrap: "nowrap",
-    alignItems: "center",
-    marginTop: "-30px",
-    marginBottom: "-30px",
-    paddingTop: "0px",
-    paddingBottom: "0px",
-  }
   return (
     <div>
-      { shopProducts.length && 
+      { isLoading ? <CircularIndeterminate />: shopProducts.length ?
         <>
-          <h1 style={{textAlign: "center",}}><span style={{textTransform: "uppercase"}}>{shopProducts[0].shopName}</span></h1>
-          <hr />
-          <div>
-            {shopProducts.map(shopProduct => (<div style={itemStyle}>
-              <div>
-                <img src={`https://bellefu.inmotionhub.xyz/get/product/image/${shopProduct.images[0]}`} alt={shopProduct.title} width={220} height={220} />
-              </div>
-              <div style={{paddingLeft: "15px"}}>
-                <p><span>Name</span>: {shopProduct.title}</p>
-                <div style={descriptionStyle}>
-                  <p>Description:</p> <p dangerouslySetInnerHTML={{__html: shopProduct.description}}></p>
-                </div>
-                <p><span>Normal Price</span>: <span dangerouslySetInnerHTML={{__html: shopProduct.currencySymbol}}></span>{shopProduct.price}</p>
-                <p><span>Promo Price</span>: <span dangerouslySetInnerHTML={{__html: shopProduct.currencySymbol}}></span>{shopProduct.promoPrice}</p>
-                <p><span>Product Plan</span>: {shopProduct.planName}</p>
-                <p><span>Owner</span>: {shopProduct.username}</p>
-              </div>
-            </div>
-          ))}
+          <p><button onClick={() => navigate(-1)}>Back to Shops</button></p>
+          <h1 style={{textAlign: "center", textDecoration: "underline"}}><span style={{textTransform: "uppercase"}}>{shopProducts[0].shopName}</span></h1>
+          <div style={{marginTop: "15px"}}>
+            {shopProducts.slice(0, displayPerPage).map(shopProduct => (<ShopProduct shopProduct={shopProduct} />))}
+          <div style={{textAlign: "right", display: !showMoreProducts && "none", marginBottom: "30px",}}><button style={{padding: "10px", color: "white", background: "rgb(118 186 27)", border: "none", borderRadius: "8px"}} onClick={viewMore}>View More</button></div>
           </div>
-        </>
+        </>: <div>
+          <p><button onClick={() => navigate(-1)} style={{font: "20px", border: "none", background: "transparent"}}>Back to Shops</button></p>
+          <p style={{textAlign: "center", font: "26px", fontWeight: "bold"}}>No product on this shop yet</p>
+        </div>
       }
     </div>
   )
