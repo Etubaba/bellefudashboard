@@ -5,176 +5,175 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-import Modal from "@mui/material/Modal";
-import UploadFileIcon from '@mui/icons-material/UploadFile';
+//import Modal from "@mui/material/Modal";
+//import UploadFileIcon from '@mui/icons-material/UploadFile';
 import {
     Paper,
 
-    Typography,
+    //Typography,
     Box,
-    Fade,
+    //Fade,
     Toolbar,
-    Button,
+    //Button,
     TablePagination,
     IconButton,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 
 // icons
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+//import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+//import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
-import Divider from '@mui/material/Divider'
+//import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
+//import Divider from '@mui/material/Divider'
 
-import { styled } from '@mui/material/styles';
-import { NavLink, useNavigate, Link } from "react-router-dom";
-import { useDispatch } from 'react-redux'
-import { subcat } from '../../Features/LoginSlice';
+//import { styled } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
+//import { useDispatch } from 'react-redux'
+//import { subcat } from '../../Features/LoginSlice';
 import Tooltip from '@mui/material/Tooltip';
-import { APIDATA, PageTitle, CircularIndeterminate } from "../../Constant"
+import { PageTitle, CircularIndeterminate } from "../../Constant"
 import axios from "axios";
-import { toast } from 'react-toastify';
+//import { toast } from 'react-toastify';
 
-const Input = styled('input')({
-    display: 'none',
-});
+// const Input = styled('input')({
+//     display: 'none',
+// });
 
 export default function Shops() {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [shops, setShops] = useState(null)
-    const [open, setOpen] = useState(false)
+    //const [open, setOpen] = useState(false)
 
 
-    const [title, setTitle] = useState(null)
+    //const [title, setTitle] = useState(null)
 
-    const [des, setDes] = useState(null)
-    const [open2, setOpen2] = useState(false)
+    //const [des, setDes] = useState(null)
+    //const [open2, setOpen2] = useState(false)
 
-    const [preview, setPreview] = useState(undefined)
-    const [selectedFile, setSelectedFile] = useState();
-    const [read, setRead] = useState('')
+    //const [preview, setPreview] = useState(undefined)
+    //const [selectedFile, setSelectedFile] = useState();
+    //const [read, setRead] = useState('')
 
-    const [replayId, setReplayID] = useState(null)
+    //const [replayId, setReplayID] = useState(null)
 
-    const [cat, setCat] = useState(null)
+    //const [cat, setCat] = useState(null)
 
 
     const navigate = useNavigate()
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (!selectedFile) {
-            setPreview(undefined);
-            return;
-        }
+    // useEffect(() => {
+    //     if (!selectedFile) {
+    //         setPreview(undefined);
+    //         return;
+    //     }
 
-        const objectUrl = URL.createObjectURL(selectedFile);
-        setPreview(objectUrl);
+    //     const objectUrl = URL.createObjectURL(selectedFile);
+    //     setPreview(objectUrl);
 
-        return () => URL.revokeObjectURL(objectUrl);
-    }, [selectedFile]);
+    //     return () => URL.revokeObjectURL(objectUrl);
+    // }, [selectedFile]);
 
-    const imageHandler = (e) => {
-        if (!e.target.files || e.target.files.length === 0) {
-            setSelectedFile(undefined);
-            return;
-        } else {
-            setSelectedFile(e.target.files[0]);
-        }
+    // const imageHandler = (e) => {
+    //     if (!e.target.files || e.target.files.length === 0) {
+    //         setSelectedFile(undefined);
+    //         return;
+    //     } else {
+    //         setSelectedFile(e.target.files[0]);
+    //     }
 
-        const file = e.target.files;
-        for (let i = 0; i < file.length; i++) {
-            let file1 = file[i];
-            console.log(file1.name);
-            setRead(file1);
-        }
-    };
+    //     const file = e.target.files;
+    //     for (let i = 0; i < file.length; i++) {
+    //         let file1 = file[i];
+    //         console.log(file1.name);
+    //         setRead(file1);
+    //     }
+    // };
 
-    const modal = {
-        deletestyle: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 400,
-            bgcolor: 'background.paper',
-            boxShadow: 24,
-            borderRadius: 3,
-            p: 4,
-        },
-        edit: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 400,
-            height: 420,
-            bgcolor: 'background.paper',
-            boxShadow: 24,
-            borderRadius: 3,
-            paddingTop: 2
-        },
-        btn: {
-            border: 'none',
-            width: '85%',
-            borderRadius: '5px',
-            textTransform: 'capitalize',
-        },
+    // const modal = {
+    //     deletestyle: {
+    //         position: 'absolute',
+    //         top: '50%',
+    //         left: '50%',
+    //         transform: 'translate(-50%, -50%)',
+    //         width: 400,
+    //         bgcolor: 'background.paper',
+    //         boxShadow: 24,
+    //         borderRadius: 3,
+    //         p: 4,
+    //     },
+    //     edit: {
+    //         position: 'absolute',
+    //         top: '50%',
+    //         left: '50%',
+    //         transform: 'translate(-50%, -50%)',
+    //         width: 400,
+    //         height: 420,
+    //         bgcolor: 'background.paper',
+    //         boxShadow: 24,
+    //         borderRadius: 3,
+    //         paddingTop: 2
+    //     },
+    //     btn: {
+    //         border: 'none',
+    //         width: '85%',
+    //         borderRadius: '5px',
+    //         textTransform: 'capitalize',
+    //     },
 
-    }
+    // }
 
-    const update = () => {
-        const formDatas = new FormData()
+    // const update = () => {
+    //     const formDatas = new FormData()
 
-        formDatas.append('name', cat)
-        formDatas.append('id', replayId)
-        formDatas.append('image', read)
+    //     formDatas.append('name', cat)
+    //     formDatas.append('id', replayId)
+    //     formDatas.append('image', read)
 
-        axios({
-            method: 'POST',
-            url: `${APIDATA}update/category`,
-            data: formDatas,
-            headers: {
-                "Content-Type": "multipart/form-data",
-            }
-        })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
-
+    //     axios({
+    //         method: 'POST',
+    //         url: `${APIDATA}update/category`,
+    //         data: formDatas,
+    //         headers: {
+    //             "Content-Type": "multipart/form-data",
+    //         }
+    //     })
+    //         .then(res => console.log(res))
+    //         .catch(err => console.log(err))
 
 
-        setOpen2(false)
 
-        toast.success('Category Updated', {
-            position: 'top-right'
-        })
-        window.location.reload(false)
-    }
+    //     setOpen2(false)
 
-    const deleted = () => {
-        const formDatas = new FormData()
+    //     toast.success('Category Updated', {
+    //         position: 'top-right'
+    //     })
+    //     window.location.reload(false)
+    // }
 
-        formDatas.append('id', replayId)
+    // const deleted = () => {
+    //     const formDatas = new FormData()
 
-        axios({
-            method: 'POST',
-            url: `${APIDATA}category/delete`,
-            data: formDatas,
-            headers: {
-                "Content-Type": "multipart/form-data",
-            }
-        })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+    //     formDatas.append('id', replayId)
 
-        toast.error('Category deleted', {
-            position: 'top-right'
-        })
+    //     axios({
+    //         method: 'POST',
+    //         url: `${APIDATA}category/delete`,
+    //         data: formDatas,
+    //         headers: {
+    //             "Content-Type": "multipart/form-data",
+    //         }
+    //     })
+    //         .then(res => console.log(res))
+    //         .catch(err => console.log(err))
 
-        setOpen(false)
-        window.location.reload(false)
-    }
+    //     toast.error('Category deleted', {
+    //         position: 'top-right'
+    //     })
+
+    //     setOpen(false)
+    //     window.location.reload(false)
+    // }
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -257,10 +256,7 @@ export default function Shops() {
                                             <Tooltip title='View Products'>
 
                                                 <IconButton onClick={() => {
-                                                    //dispatch(subcat(row.id))
                                                     navigate(`/shop/${row.id}`)
-
-
                                                 }} >
                                                     <RemoveRedEyeOutlinedIcon sx={{ color: 'green' }} />
                                                 </IconButton>
@@ -269,7 +265,7 @@ export default function Shops() {
 
 
 
-                                            <Tooltip title='Edit Category'>
+                                            {/* <Tooltip title='Edit Category'>
                                                 <IconButton onClick={() => {
                                                     setOpen2(true)
                                                     setReplayID(row.id)
@@ -332,11 +328,7 @@ export default function Shops() {
                                                             onChange={(e) => setCat(e.target.value)}
                                                             value={cat}
                                                             placeholder="Category Name"
-                                                        // label="category"
-                                                        // variant="outlined" 
                                                         />
-                                                        {/* error={cat === ""}
-                                                             helperText={cat === "" ? 'Empty field!' : ' '} */}
                                                         <label htmlFor="upload-button-file">
                                                             <input
                                                                 accept="image/*"
@@ -363,9 +355,6 @@ export default function Shops() {
                                                                 Select Image
                                                             </Button>
                                                         </label>
-
-
-
                                                     </div>
 
                                                     <Divider sx={{ mb: 5 }} />
@@ -374,7 +363,7 @@ export default function Shops() {
                                                         <Button variant="contained" disabled={selectedFile ? false : true} sx={{ color: '#ffff', bgcolor: '#76ba1b' }} onClick={update} >Update</Button>
                                                     </Box>
                                                 </Box>
-                                            </Modal>
+                                            </Modal> */}
 
 
                                         </Box>
