@@ -26,7 +26,8 @@ import Selectedcat from "./Pages/Category/Selectedcat";
 import Transaction from "./Pages/Account/Transaction";
 import User from "./Pages/Account/User";
 import Order from "./Pages/Order/Orders";
-// import Shop from "./Pages/Shop/Shop";
+import Shop from "./Pages/Shop/Shop";
+import ShopProducts from "./Pages/Shop/ShopProducts";
 
 import Report from "./Pages/Report/Report";
 import Review from "./Pages/Report/Review";
@@ -98,7 +99,8 @@ function App() {
           <Route path="profiles" element={<Profles />} />
           <Route path="selectedcat" element={<Selectedcat />} />
           <Route path="order" element={<Order />} />
-          {/* <Route path="shop" element={<Shop />} /> */}
+          <Route path="shop" element={<Shop />} />
+          <Route path="shop/:shopSlug" element={<ShopProducts />} />
           <Route path="report" element={<Report />} />
           <Route path="review" element={<Review />} />
           <Route path="fileupload" element={<FileUpload />} />
