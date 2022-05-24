@@ -28,6 +28,8 @@ import User from "./Pages/Account/User";
 import Order from "./Pages/Order/Orders";
 import Shop from "./Pages/Shop/Shop";
 import ShopProducts from "./Pages/Shop/ShopProducts";
+import PendingProducts from "./Pages/Shop/PendingProducts";
+import DeclinedProducts from "./Pages/Shop/DeclinedProducts";
 
 import Report from "./Pages/Report/Report";
 import Review from "./Pages/Report/Review";
@@ -101,6 +103,8 @@ function App() {
           <Route path="order" element={<Order />} />
           <Route path="shop" element={<Shop />} />
           <Route path="shop/:shopSlug" element={<ShopProducts />} />
+          <Route path="shopproduct" element={<PendingProducts />} />
+          <Route path="declined" element={<DeclinedProducts />} />
           <Route path="report" element={<Report />} />
           <Route path="review" element={<Review />} />
           <Route path="fileupload" element={<FileUpload />} />
