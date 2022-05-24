@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PageTitle, colors, APIDATA,ProductImageUrl } from "../../Constant";
+import { PageTitle, colors, APIDATA, ProductImageUrl } from "../../Constant";
 import {
     InputLabel,
     MenuItem,

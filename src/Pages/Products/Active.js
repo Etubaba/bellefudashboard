@@ -69,6 +69,7 @@ function Active() {
   const [subcat, setSubCat] = useState(null);
   const [cat, setCat] = useState(null);
   const [page, setPage] = useState(1);
+  const [images, setImages] = useState(null);
   const [initailProducts, setInitialProducts] = useState([]);
   const [totalSearch, setTotalSearch] = useState(0);
 
@@ -243,7 +244,7 @@ function Active() {
   };
 
 
-  console.log('toal', totalSearch)
+  console.log('toal', activeProducts)
   return (
     <div className={css(lolo.container)}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -267,7 +268,7 @@ function Active() {
       <div
         style={{
           position: "relative",
-          left: isDrawerOpen.drawer ? "37%" : "49%",
+          left: isDrawerOpen.drawer ? "40%" : "48%",
         }}
       >
         <form>
@@ -448,6 +449,7 @@ function Active() {
                                   onClick={() => {
                                     handleOpen();
                                     setProductId(product.id);
+                                    setImages(product.images);
                                   }}
                                 >
                                   <Icons.RemoveRedEyeOutlined
@@ -487,6 +489,7 @@ function Active() {
                                   <ProductModal
                                     title="Active"
                                     open={open}
+
                                     setOpen={setOpen}
                                     productDetails={product}
                                     status="Active"
