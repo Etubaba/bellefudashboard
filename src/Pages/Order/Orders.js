@@ -48,7 +48,7 @@ export default function AdminList() {
     const [open3, setOpen3] = useState(false)
     const [pushId, setPushId] = useState(null)
     const [track, setTrack] = useState('')
-    const [trackingID, setTrackingID] = useState(null)
+
     const [des, setDes] = useState('')
 
     const [reload, setReload] = useState(0)
@@ -65,17 +65,13 @@ export default function AdminList() {
     useEffect(() => {
 
         const getprogram = async () => {
-            await axios.get(`${APIDATAA}`)
+            await axios.get(`${APIDATA}list/orders`)
                 .then(res => setProgram(res.data.data))
                 .catch(err => console.log(err))
         }
 
         getprogram()
     }, [reload])
-
-
-
-
 
     const modal = {
         deletestyle: {
@@ -112,13 +108,21 @@ export default function AdminList() {
 
 
     const update = () => {
-        // if (des === '' || track === '') {
-        //     toast.error('All fields are required')
-        // } else {
-        //     axios.post('',{
-
-        //     })
-        // }
+        if (des === '' || track === '') {
+            toast.error('All fields are required')
+        } else {
+            axios.post(`${APIDATA}update/track/status`, {
+                orderId: pushId,
+                status: track,
+                info: des
+            }).then(res => {
+                if (res.data.status) {
+                    toast.success('Order Updated Successfully')
+                    setReload(prev => prev + 1)
+                    setOpen3(false)
+                }
+            })
+        }
     }
 
 
@@ -209,7 +213,7 @@ export default function AdminList() {
                                                     onClick={() => {
                                                         setPushId(row.id)
                                                         setOpen3(true)
-                                                        setTrackingID(row.tracking_id)
+
 
                                                     }}
                                                 >
@@ -239,28 +243,35 @@ export default function AdminList() {
                                                         <Icons.WarningAmber sx={{ fontSize: 50 }} />
                                                     </Box>
                                                     <Divider sx={{ mb: 2 }} />
-                                                    <Typography sx={{ p: 1, ml: 3, mb: 2 }} variant="p"> Do you want to edit this Category ? </Typography>
+                                                    <Typography sx={{ p: 1, ml: 3, mb: 2 }} variant="p"> Do you want to edit this order status ? </Typography>
 
-                                                    <div >
+                                                    <div style={{ flexDirection: 'column', justifyContent: "center", alignItems: "center", display: 'flex', marginTop: 30 }}>
+                                                        <FormControl sx={{ m: 1, minWidth: 350, mb: 4 }}>
+                                                            <InputLabel id="demo-simple-select-helper-label">
+                                                                Orders Status
+                                                            </InputLabel>
+                                                            <Select
+                                                                labelId="demo-simple-select-helper-label"
+                                                                id="demo-simple-select-helper"
+                                                                value={track}
+                                                                label="Order Status"
+                                                                onChange={(e) => setTrack(e.target.value)}
+                                                            >
+                                                                <MenuItem value='processing'>Processing</MenuItem>
+                                                                <MenuItem value='ontransit'>On Transit</MenuItem>
+                                                                <MenuItem value='delivered'>Delivered</MenuItem>
+
+                                                            </Select>
+                                                        </FormControl>
+
                                                         <input
-                                                            style={{ padding: 8, height: 40, width: 340, margin: 30 }}
-                                                            id="outlined-basic"
-                                                            onChange={(e) => setTrack(e.target.value)}
-                                                            value={track}
-                                                            placeholder="Tracking Status"
-                                                        />
-                                                        <input
-                                                            style={{ padding: 8, height: 40, width: 340, margin: 30 }}
+                                                            style={{ padding: 20, height: 40, width: 350, marginBottom: 30 }}
                                                             id="outlined-basic"
                                                             onChange={(e) => setDes(e.target.value)}
                                                             value={des}
                                                             placeholder="Tracking Description"
 
                                                         />
-
-
-
-
 
                                                     </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PageTitle, colors, APIDATA } from "../../Constant";
+import { PageTitle, colors, APIDATA,ProductImageUrl } from "../../Constant";
 import {
     InputLabel,
     MenuItem,
@@ -322,7 +322,7 @@ function ProductList() {
                                                     <Grid item xs={3} sx={{ paddingLeft: 0 }}>
                                                         <Item>
                                                             <img
-                                                                src={`https://bellefu.inmotionhub.xyz/get/product/image/${product?.image}`}
+                                                                src={`${ProductImageUrl}${product?.image}`}
                                                                 alt="iuujhbb"
                                                                 className={css(lolo.productImg)}
                                                             />
