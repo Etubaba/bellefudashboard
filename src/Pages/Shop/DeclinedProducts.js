@@ -292,8 +292,6 @@ function Pending() {
 
         setOpen3(false);
         setReason("");
-
-
     };
 
     return (

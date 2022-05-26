@@ -896,7 +896,7 @@ export default function MiniDrawer() {
 
 
                             <NavLink
-                                to='valueads'
+                                to='valuelist'
                                 style={({ isActive }) => ({
                                     color: isActive ? "#ffffff" : "#757575",
                                     background: isActive ? colors.primary : "#ffffff",

@@ -1,5 +1,5 @@
 import React from "react";
-import { PageTitle, colors } from "../../Constant";
+import { PageTitle, colors, APIDATA } from "../../Constant";
 import axios from "axios";
 import { useState, useEffect } from "react";
 // import { Button, Paper ,Grid, Typography} from "@mui/material";
@@ -13,6 +13,7 @@ import {
     Paper,
     Box,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -26,8 +27,9 @@ export default function CreateCategory() {
     const [url, setUrl] = useState('')
 
 
-    const apiUrl = 'https://bellefu.inmotionhub.xyz/api/v3/add/announcement'
 
+
+    const navigate = useNavigate()
 
 
     const onSubmit = () => {
@@ -47,7 +49,7 @@ export default function CreateCategory() {
 
             axios({
                 method: 'POST',
-                url: `${apiUrl}`,
+                url: `${APIDATA}add/announcement`,
                 data: formDatas,
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -126,6 +128,12 @@ export default function CreateCategory() {
 
     return (
         <div>
+            <Button
+                sx={{ mt: -5, mb: 5, width: '10%', backgroundColor: colors.primary, color: '#fff', fontSize: '1.5rem', fontWeight: 'bold', borderRadius: '5px' }}
+                onClick={() => navigate('/valuelist')}
+            >
+                <Icons.ArrowBack />
+            </Button>
             <PageTitle title="Our Value Ads" />
             <Toolbar />
             <div >

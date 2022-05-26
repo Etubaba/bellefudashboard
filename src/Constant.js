@@ -57,8 +57,11 @@ function Backdrop() {
 }
 
 // api datas
+
 const APIDATA = "https://bellefu.inmotionhub.xyz/api/v3/";
 
-const ProductImageUrl='https://bellefu.inmotionhub.xyz/get/product/image/'
+const ProductImageUrl = 'https://bellefu.inmotionhub.xyz/get/product/image/'
+
+export const AnouncementUrl = 'https://bellefu.inmotionhub.xyz/get/custom/image/'
 
 export { colors, PageTitle, APIDATA, CircularIndeterminate, Backdrop, ProductImageUrl };
