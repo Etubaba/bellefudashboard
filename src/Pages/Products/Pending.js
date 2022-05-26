@@ -70,6 +70,7 @@ function Pending() {
   const [subcat, setSubCat] = useState(null);
   const [cat, setCat] = useState(null);
   const [page, setPage] = useState(1);
+  const [reload, setReload] = useState(0);
 
   const isDrawerOpen = useSelector(loginStatus);
 
@@ -167,7 +168,7 @@ function Pending() {
 
   useEffect(() => {
     getPendingProducts();
-  }, [page]);
+  }, [page, reload]);
 
   //useEffect for fetching the list of all categories
   useEffect(() => {
@@ -223,13 +224,19 @@ function Pending() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.status) {
+          setOpen2(false);
+          setReload(prevState => prevState + 1);
+          toast.success("Product Updated", {
+            position: "top-right",
+          });
+        }
+
+      })
       .catch((err) => console.log(err));
 
-    setOpen2(false);
-    toast.success("Product Updated", {
-      position: "top-right",
-    });
+
 
     // await axios.post(`${APIDATA}change/pending/status`).then((res) => {});
   };
@@ -250,14 +257,18 @@ function Pending() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.status) {
+          setOpen3(false);
+          setReload(prev => prev + 1)
+          toast.success("Product Approved", {
+            position: "top-right",
+          });
+        }
+      })
       .catch((err) => console.log(err));
 
-    setOpen3(false);
 
-    toast.success("Product Approved", {
-      position: "top-right",
-    });
   };
 
   //handling decline
@@ -277,15 +288,19 @@ function Pending() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.status) {
+          setOpen3(false);
+          setReason("");
+          seReload(prev => prev + 1)
+          toast.error("Product Declined", {
+            position: "top-right",
+          });
+        }
+      })
       .catch((err) => console.log(err));
 
-    setOpen3(false);
-    setReason("");
 
-    toast.error("Product Declined", {
-      position: "top-right",
-    });
   };
 
   return (

@@ -40,6 +40,7 @@ export default function AdminList() {
     const [pushId, setPushId] = useState(null)
     const [reason, setReason] = useState()
     const [image, setImage] = useState(null)
+    const [reload, setReload] = useState(0)
 
 
 
@@ -63,7 +64,7 @@ export default function AdminList() {
         }
 
         getprogram()
-    }, [])
+    }, [reload])
 
 
 
@@ -81,16 +82,20 @@ export default function AdminList() {
                 "Content-Type": "multipart/form-data",
             }
         })
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.data.status) {
+                    setOpen3(false)
+                    setReload(prev => prev + 1)
+                    toast.success('User Verified', {
+                        position: 'top-right'
+                    })
+                }
+            })
             .catch(err => console.log(err))
 
 
 
-        setOpen3(false)
 
-        toast.success('User Verified', {
-            position: 'top-right'
-        })
 
 
     }
@@ -120,12 +125,17 @@ export default function AdminList() {
                     "Content-Type": "multipart/form-data",
                 }
             })
-                .then(res => console.log(res))
+                .then(res => {
+                    if (res.data.status) {
+                        setReload(prev => prev + 1)
+                        setOpen(false)
+                        toast.error('User Declined', {
+                            position: 'top-right'
+                        })
+                    }
+                })
                 .catch(err => console.log(err))
 
-            toast.error('User Declined', {
-                position: 'top-right'
-            })
 
 
         }

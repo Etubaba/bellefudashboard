@@ -72,6 +72,7 @@ function Active() {
   const [images, setImages] = useState(null);
   const [initailProducts, setInitialProducts] = useState([]);
   const [totalSearch, setTotalSearch] = useState(0);
+  const [reload, setReload] = useState(0);
 
   const isDrawerOpen = useSelector(loginStatus);
   const handleOpen = () => setOpen(true);
@@ -159,7 +160,7 @@ function Active() {
 
   useEffect(() => {
     getActiveProducts();
-  }, [page]);
+  }, [page, reload]);
 
   //useEffect for fetching the list of all categories
   useEffect(() => {
@@ -215,11 +216,16 @@ function Active() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.status) {
+          setOpen2(false);
+          setReload(prev => prev + 1)
+        }
+      })
       .catch((err) => console.log(err));
 
-    setOpen2(false);
-    window.location.reload(false);
+
+
 
     // await axios.post(`${APIDATA}change/pending/status`).then((res) => {});
   };
@@ -244,7 +250,7 @@ function Active() {
   };
 
 
-  console.log('toal', activeProducts)
+
   return (
     <div className={css(lolo.container)}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>

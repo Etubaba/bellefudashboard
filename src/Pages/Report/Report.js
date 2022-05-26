@@ -58,8 +58,9 @@ export default function Report() {
   const [title, setTitle] = useState(null);
   const [des, setDes] = useState(null);
   const [target, setTarget] = useState(null);
+  const [reload, setReload] = useState(0);
 
-  const oweiTime = time.toISOString();
+  // const oweiTime = time.toISOString();
   const navigate = useNavigate();
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -79,28 +80,11 @@ export default function Report() {
     };
 
     getReport();
-  }, []);
+  }, [reload]);
 
   // const filteredReport = report.filter((filterdP) => filterdP.inorganic_views === )
 
-  console.log("Report Details => ", report);
 
-  const formstyle = {
-    position: "relative",
-    left: "38vw",
-  };
-
-  const deletestyle = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    boxShadow: 24,
-    borderRadius: 3,
-    p: 4,
-  };
 
   //handling approve report
   const handleApprove = () => {
@@ -117,14 +101,18 @@ export default function Report() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.status) {
+          setOpen3(false);
+          setReload(prev => prev + 1)
+          toast.success("Report Approved", {
+            position: "top-right",
+          });
+        }
+      })
       .catch((err) => console.log(err));
 
-    setOpen3(false);
 
-    toast.success("Report Approved", {
-      position: "top-right",
-    });
   };
 
   //handle probe report
@@ -142,17 +130,20 @@ export default function Report() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.status) {
+          setOpen3(false);
+          setReload(prev => prev + 1)
+          toast.success("Report Moved To Probing", {
+            position: "top-right",
+          });
+        }
+      })
       .catch((err) => console.log(err));
 
-    setOpen3(false);
 
-    toast.success("Report Moved To Probing", {
-      position: "top-right",
-    });
   };
 
-  console.log("push id => ", pushId);
 
   //handle report delete method
   const handleDelete = () => {
@@ -168,14 +159,19 @@ export default function Report() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.statu) {
+          setReload(prev => prev + 1)
+          toast.error("Report Deleted", {
+            position: "top-right",
+          });
+
+          setOpen4(false);
+        }
+      })
       .catch((err) => console.log(err));
 
-    toast.error("Report Deleted", {
-      position: "top-right",
-    });
 
-    setOpen4(false);
   };
 
   const modalstyle = {
