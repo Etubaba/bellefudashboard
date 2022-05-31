@@ -44,6 +44,7 @@ export default function AdminList() {
     const [open2, setOpen2] = useState(false)
     const [pushId, setPushId] = useState(null)
     const [image, setImage] = useState()
+    const [reload, setReload] = useState(0)
 
 
     const handleChangePage = (event, newPage) => {
@@ -64,7 +65,7 @@ export default function AdminList() {
         }
 
         getprogram()
-    }, [])
+    }, [reload])
 
     const verify = () => {
         const formDatas = new FormData()
@@ -82,7 +83,7 @@ export default function AdminList() {
         })
             .then(res => {
                 if (res.data.status) {
-
+                    setReload(prev => prev + 1)
                     toast.success('Custom request deleted', {
                         position: 'top-right'
                     })

@@ -48,6 +48,7 @@ export default function Review() {
   const [open4, setOpen4] = useState(false);
   const [reviewId, setReviewId] = useState(null);
   const [filter, setFilter] = useState("");
+  const [reload, setReload] = useState(0);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -67,7 +68,7 @@ export default function Review() {
     };
 
     getprogram();
-  }, []);
+  }, [reload]);
 
   // Approve or resolve review
   const approve = () => {
@@ -83,14 +84,17 @@ export default function Review() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.status) {
+          setOpen2(false);
+          setReload(prev => prev + 1)
+          toast.success("Review Approved", {
+            position: "top-right",
+          });
+        }
+      })
       .catch((err) => console.log(err));
-    setOpen2(false);
-    window.location.reload(false)
 
-    toast.success("Review Approved", {
-      position: "top-right",
-    });
   };
 
   // When review is undergoing probing
@@ -108,14 +112,18 @@ export default function Review() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-    setOpen2(false);
-    window.location.reload(false)
+      .then((res) => {
+        if (res.data.status) {
+          setOpen2(false);
 
-    toast.info("Review undergoing probe", {
-      position: "top-right",
-    });
+          setReload(prev => prev + 1)
+          toast.info("Review undergoing probe", {
+            position: "top-right",
+          })
+        }
+      })
+      .catch((err) => console.log(err));
+    ;
   };
 
   // review delete
@@ -132,14 +140,15 @@ export default function Review() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.status) {
+          setOpen(false); setReload(prev => prev + 1);
+          toast.error("Review Deleted", {
+            position: "top-right",
+          });
+        }
+      })
       .catch((err) => console.log(err));
-
-    toast.error("Review Deleted", {
-      position: "top-right",
-    });
-    setOpen(false);
-    window.location.reload(false)
   };
 
   // Modal style

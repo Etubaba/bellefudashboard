@@ -46,6 +46,7 @@ export default function AdminList() {
     const [pushId, setPushId] = useState(null)
     const [reason, setReason] = useState()
     const [image, setImage] = useState(null)
+    const [reload, setReload] = useState(0)
 
 
     const handleChangePage = (event, newPage) => {
@@ -66,7 +67,7 @@ export default function AdminList() {
         }
 
         getprogram()
-    }, [])
+    }, [reload])
 
     const verify = () => {
         const formDatas = new FormData()
@@ -82,16 +83,17 @@ export default function AdminList() {
                 "Content-Type": "multipart/form-data",
             }
         })
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.data.status) {
+                    toast.success('Verification completed', {
+                        position: 'top-right'
+                    })
+
+                    setOpen3(false)
+                    setReload(prev => prev + 1)
+                }
+            })
             .catch(err => console.log(err))
-
-
-
-        setOpen3(false)
-
-        toast.success('User Verified', {
-            position: 'top-right'
-        })
 
 
     }
@@ -119,13 +121,19 @@ export default function AdminList() {
                     "Content-Type": "multipart/form-data",
                 }
             })
-                .then(res => console.log(res))
+                .then(res => {
+                    if (res.data.status) {
+                        toast.success('Verification declined', {
+                            position: 'top-right'
+                        })
+                        setOpen(false)
+                        setReload(prev => prev + 1)
+                    }
+                })
                 .catch(err => console.log(err))
 
-            toast.error('User Declined', {
-                position: 'top-right'
-            })
-            setOpen(false)
+
+
 
         }
 

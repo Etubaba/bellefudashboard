@@ -11,6 +11,8 @@ const colors = {
   bellefuGreen: "rgb(118 186 27)",
 };
 
+
+
 function PageTitle(props) {
   return (
     <div>
@@ -55,6 +57,11 @@ function Backdrop() {
 }
 
 // api datas
+
 const APIDATA = "https://bellefu.inmotionhub.xyz/api/v3/";
 
-export { colors, PageTitle, APIDATA, CircularIndeterminate, Backdrop };
+const ProductImageUrl = 'https://bellefu.inmotionhub.xyz/get/product/image/'
+
+export const AnouncementUrl = 'https://bellefu.inmotionhub.xyz/get/custom/image/'
+
+export { colors, PageTitle, APIDATA, CircularIndeterminate, Backdrop, ProductImageUrl };

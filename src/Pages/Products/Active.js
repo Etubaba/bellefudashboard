@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PageTitle, colors, APIDATA } from "../../Constant";
+import { PageTitle, colors, APIDATA, ProductImageUrl } from "../../Constant";
 import {
   InputLabel,
   MenuItem,
@@ -69,8 +69,10 @@ function Active() {
   const [subcat, setSubCat] = useState(null);
   const [cat, setCat] = useState(null);
   const [page, setPage] = useState(1);
+  const [images, setImages] = useState(null);
   const [initailProducts, setInitialProducts] = useState([]);
   const [totalSearch, setTotalSearch] = useState(0);
+  const [reload, setReload] = useState(0);
 
   const isDrawerOpen = useSelector(loginStatus);
   const handleOpen = () => setOpen(true);
@@ -158,7 +160,7 @@ function Active() {
 
   useEffect(() => {
     getActiveProducts();
-  }, [page]);
+  }, [page, reload]);
 
   //useEffect for fetching the list of all categories
   useEffect(() => {
@@ -214,11 +216,16 @@ function Active() {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.status) {
+          setOpen2(false);
+          setReload(prev => prev + 1)
+        }
+      })
       .catch((err) => console.log(err));
 
-    setOpen2(false);
-    window.location.reload(false);
+
+
 
     // await axios.post(`${APIDATA}change/pending/status`).then((res) => {});
   };
@@ -243,7 +250,7 @@ function Active() {
   };
 
 
-  console.log('toal', totalSearch)
+
   return (
     <div className={css(lolo.container)}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -267,7 +274,7 @@ function Active() {
       <div
         style={{
           position: "relative",
-          left: isDrawerOpen.drawer ? "37%" : "49%",
+          left: isDrawerOpen.drawer ? "40%" : "48%",
         }}
       >
         <form>
@@ -350,7 +357,7 @@ function Active() {
                           <Grid item xs={3} sx={{ paddingLeft: 0 }}>
                             <Item>
                               <img
-                                src={`https://bellefu.inmotionhub.xyz/get/product/image/${product?.image}`}
+                                src={`${ProductImageUrl}${product?.image}`}
                                 alt="iuujhbb"
                                 className={css(lolo.productImg)}
                               />
@@ -448,6 +455,7 @@ function Active() {
                                   onClick={() => {
                                     handleOpen();
                                     setProductId(product.id);
+                                    setImages(product.images);
                                   }}
                                 >
                                   <Icons.RemoveRedEyeOutlined
@@ -487,6 +495,7 @@ function Active() {
                                   <ProductModal
                                     title="Active"
                                     open={open}
+
                                     setOpen={setOpen}
                                     productDetails={product}
                                     status="Active"

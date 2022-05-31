@@ -42,7 +42,7 @@ const CreateAdmin = () => {
 
     const filer = evt.target.files;
     for (let i = 0; i < filer.length; i++) {
-      let file1  = filer[i];
+      let file1 = filer[i];
       console.log(file1.name);
       setRead(file1);
     }
@@ -177,7 +177,7 @@ const CreateAdmin = () => {
             id="fullname"
             variant="outlined"
             size="small"
-            helperText={fullName === "" ? "Empty field!" : " "}
+
             onChange={(evt) => setFullName(evt.target.value)}
           />
         </div>
@@ -195,13 +195,13 @@ const CreateAdmin = () => {
               value={role}
               label="Gender"
               size="small"
-              helperText={role === "" ? "Empty field!" : " "}
+
               onChange={(e) => setRole(e.target.value)}
               sx={{ width: "60%" }}
             >
               <MenuItem value={1}>Super-Admin</MenuItem>
-              <MenuItem value={2}>Sub-Admin1</MenuItem>
-              <MenuItem value={3}>Sub-Admin2</MenuItem>
+              <MenuItem value={2}>Sub-Admin</MenuItem>
+              <MenuItem value={3}>Shop-Admin</MenuItem>
             </Select>
           </FormControl>
           <div style={{ position: "relative" }}>
@@ -212,7 +212,7 @@ const CreateAdmin = () => {
               type="phone"
               size="small"
               value={phone}
-              helperText={phone === "" ? "Empty field!" : " "}
+
               onChange={(evt) => setPhone(evt.target.value)}
             />
           </div>
@@ -250,11 +250,11 @@ const CreateAdmin = () => {
                 value={status}
                 label="Status"
                 size="small"
-                helperText={status === "" ? "Empty field!" : " "}
+
                 onChange={(e) => setStatus(e.target.value)}
               >
-                <MenuItem value={0}>Active</MenuItem>
-                <MenuItem value={1}>Inactive</MenuItem>
+                <MenuItem value={1}>Active</MenuItem>
+                <MenuItem value={0}>Inactive</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -289,7 +289,7 @@ const CreateAdmin = () => {
               type="password"
               size="small"
               value={password}
-              helperText={password === "" ? "Empty field!" : " "}
+
               onChange={(evt) => setPassword(evt.target.value)}
             />
           </div>
@@ -297,7 +297,7 @@ const CreateAdmin = () => {
         <div style={{ textAlign: "center", margin: "30px" }}>
           <Button
             variant="contained"
-            color="success"
+            sx={{ backgroundColor: colors.bellefuGreen, color: "white" }}
             size="large"
             // disabled={emptyField ? true : false}
             onClick={Onsubmit}

@@ -55,15 +55,8 @@ export default function CategoryList() {
   const [read, setRead] = useState('')
 
   const [replayId, setReplayID] = useState(null)
-
+  const [reload, setReload] = useState(0)
   const [cat, setCat] = useState(null)
-
-
-
-
-
-
-
 
 
 
@@ -156,17 +149,16 @@ export default function CategoryList() {
         "Content-Type": "multipart/form-data",
       }
     })
-      .then(res => console.log(res))
+      .then(res => {
+        if (res.data.status) {
+          setOpen2(false)
+          setReload(prev => prev + 1)
+          toast.success('Sub-category Updated', {
+            position: 'top-right'
+          })
+        }
+      })
       .catch(err => console.log(err))
-
-
-
-    setOpen2(false)
-
-    toast.success('Sub-category Updated', {
-      position: 'top-right'
-    })
-    window.location.reload(false)
   }
 
 
@@ -188,26 +180,17 @@ export default function CategoryList() {
         "Content-Type": "multipart/form-data",
       }
     })
-      .then(res => console.log(res))
+      .then(res => {
+        if (res.data.status) {
+          toast.error('Sub-category deleted', {
+            position: 'top-right'
+          })
+          setReload(prev => prev + 1)
+          setOpen(false)
+        }
+      })
       .catch(err => console.log(err))
-
-    toast.error('Sub-category deleted', {
-      position: 'top-right'
-    })
-    window.location.reload(false)
-    setOpen(false)
-
-
   }
-
-
-
-
-
-
-
-
-
 
 
   const handleChangePage = (event, newPage) => {
@@ -227,12 +210,8 @@ export default function CategoryList() {
         .catch(err => console.log(err))
     }
 
-
-    axios.get()
-
-
     getprogram()
-  }, [])
+  }, [reload])
 
   return (
     <Box>

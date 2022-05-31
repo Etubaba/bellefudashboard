@@ -28,6 +28,8 @@ import User from "./Pages/Account/User";
 import Order from "./Pages/Order/Orders";
 import Shop from "./Pages/Shop/Shop";
 import ShopProducts from "./Pages/Shop/ShopProducts";
+import PendingProducts from "./Pages/Shop/PendingProducts";
+import DeclinedProducts from "./Pages/Shop/DeclinedProducts";
 
 import Report from "./Pages/Report/Report";
 import Review from "./Pages/Report/Review";
@@ -53,6 +55,7 @@ import EditProfile from "./Pages/Profiles/EditProfile";
 import CustomRequest from "./Pages/settings/CustomRequest";
 import CustomAds from "./Pages/settings/CustomAds";
 import OurValueAds from "./Pages/settings/OurValueAds";
+import Valuelist from "./Pages/settings/Valuelist";
 import CreateCustomads from "./Pages/settings/CreateCustomads";
 
 function App() {
@@ -66,6 +69,9 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route path="restriction" element={<Restriction />} />
 
+
+        {/* routes for just super admin  */}
+
         <Route element={<ProtectedRoutes allowedRoles={[1]} />}>
           <Route path="transaction" element={<Transaction />} />
           <Route path="user" element={<User />} />
@@ -75,9 +81,29 @@ function App() {
 
 
 
+        {/* routes for just shop admin  */}
 
-        <Route element={<ProtectedRoutes allowedRoles={[1, 2]} />}>
+        <Route element={<ProtectedRoutes allowedRoles={[1, 3]} />}>
+          <Route path="order" element={<Order />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="shop/:shopSlug" element={<ShopProducts />} />
+          <Route path="shopproduct" element={<PendingProducts />} />
+          <Route path="declined" element={<DeclinedProducts />} />
+          {/* <Route path="/" element={<Dashboard />} /> */}
+        </Route>
+
+
+
+        {/* route for all */}
+        <Route element={<ProtectedRoutes allowedRoles={[1, 2, 3]} />}>
           <Route path="/" element={<Dashboard />} />
+        </Route>
+
+
+
+        {/* routes for just sub-admin  */}
+        <Route element={<ProtectedRoutes allowedRoles={[1, 2]} />}>
+
           <Route path="productlist" element={<Productlist />} />
 
 
@@ -98,9 +124,7 @@ function App() {
 
           <Route path="profiles" element={<Profles />} />
           <Route path="selectedcat" element={<Selectedcat />} />
-          <Route path="order" element={<Order />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="shop/:shopSlug" element={<ShopProducts />} />
+
           <Route path="report" element={<Report />} />
           <Route path="review" element={<Review />} />
           <Route path="fileupload" element={<FileUpload />} />
@@ -116,6 +140,7 @@ function App() {
           <Route path="customrequest" element={<CustomRequest />} />
           <Route path="customads" element={<CustomAds />} />
           <Route path="valueads" element={<OurValueAds />} />
+          <Route path="valuelist" element={<Valuelist />} />
           <Route path="createads" element={<CreateCustomads />} />
 
           <Route path="idveri" element={<IDverification />} />

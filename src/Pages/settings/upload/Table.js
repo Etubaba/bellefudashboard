@@ -41,6 +41,7 @@ const FilesUploadedTable = () => {
   const [upload, setUpload] = useState(null)
   const [open, setOpen] = useState(false)
   const [slideId, setSlideId] = useState(null)
+  const [reload, setReload] = useState(0)
 
 
   const handlePageChange = (event, newPage) => {
@@ -62,7 +63,7 @@ const FilesUploadedTable = () => {
     }
 
     getprogram()
-  }, [])
+  }, [reload])
 
 
   const remove = () => {
@@ -78,14 +79,19 @@ const FilesUploadedTable = () => {
         "Content-Type": "multipart/form-data",
       }
     })
-      .then(res => console.log(res))
+      .then(res => {
+        if (res.data.status) {
+          setReload(prev => prev + 1)
+          setOpen(false)
+          toast.success('Slider deleted', {
+            position: 'top-right'
+          })
+        }
+      })
       .catch(err => console.log(err))
 
-    toast.error('Slide deleted', {
-      position: 'top-right'
-    })
-    setOpen(false)
-    window.location.reload(false)
+
+
 
   }
 

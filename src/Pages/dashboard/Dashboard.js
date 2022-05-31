@@ -20,6 +20,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { toast } from "react-toastify";
 import { colors } from "../../Constant";
+import moment from "moment";
 
 const ITEM_HEIGHT = 48;
 
@@ -286,10 +287,7 @@ export default function Dashboard() {
           <p className={css(styles.gText)}>
             Good <span style={{ fontWeight: "bold" }}>{greetings}</span>
           </p>
-          <p className={css(styles.nText)}>
-            John <span className={css(styles.leftSpan)}>Doe</span>
-          </p>
-          <p className={css(styles.dText)}>Social Media Admin</p>
+
         </div>
 
         <Grid container spacing={2} columns={15}>
@@ -447,7 +445,7 @@ export default function Dashboard() {
               |
             </span>
           </div> */}
-          <p className={css(styles.topRightP)}>Jan 30, 2022</p>
+          <p className={css(styles.topRightP)}>{moment(new Date()).format('ll')}</p>
           <span
             style={{
               color: "#767873",

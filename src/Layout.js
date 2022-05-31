@@ -107,6 +107,7 @@ export default function MiniDrawer() {
     const [report, setReport] = useState(false);
     const [setting, setSetting] = useState(false);
     const [custom, setCustom] = useState(false);
+    const [shop, setShop] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -506,6 +507,7 @@ export default function MiniDrawer() {
                                 </ListItem>
                             </NavLink>
                         </List>
+
                     </Collapse>
 
 
@@ -516,7 +518,7 @@ export default function MiniDrawer() {
                             color: isActive ? "#ffffff" : "#757575",
                             background: isActive ? colors.primary : "#ffffff",
                             display: "flex",
-                            padding: isActive ? "6px 6.6vw 4px 18px" : null,
+                            // padding: isActive ? "6px 6.6vw 4px 18px" : null,
                             textDecoration: "none",
                             borderRadius: "50px 0 0 50px"
                         })}
@@ -528,28 +530,78 @@ export default function MiniDrawer() {
                         </ListItem>
                     </NavLink>
 
-                    <NavLink
-                        to='shop'
-                        style={({ isActive }) => ({
-                            color: isActive ? "#ffffff" : "#757575",
-                            background: isActive ? colors.primary : "#ffffff",
-                            display: "flex",
-                            // padding: "6px 6.6vw 4px 18px",
-                            textDecoration: "none",
-                            borderRadius: "50px 0 0 50px"
-                        })}
-                    >
 
 
-                        <ListItem button>
-                            <ListItemIcon>
-                                <Icons.StoreOutlined sx={{ color: "rgb(118 186 27)" }} />
-                            </ListItemIcon>
-                            <ListItemText primary='Shops' />
-                        </ListItem>
-                    </NavLink>
+                    <ListItem button onClick={() => setShop(!shop)}>
+                        <ListItemIcon>
+                            <Icons.StoreOutlined sx={{ color: "rgb(118 186 27)" }} />
+                        </ListItemIcon>
+                        <ListItemText primary='Shop' />
+                        {shop ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+
+                    <Collapse in={shop} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
 
 
+                            <NavLink
+                                to='shop'
+                                style={({ isActive }) => ({
+                                    color: isActive ? "#ffffff" : "#757575",
+                                    background: isActive ? colors.primary : "#ffffff",
+                                    display: "flex",
+                                    // padding: "6px 6.6vw 4px 18px",
+                                    textDecoration: "none",
+                                    borderRadius: "50px 0 0 50px"
+                                })}
+                            >
+                                <ListItem button sx={{ pl: 6 }}>
+                                    <ListItemIcon>
+                                        <Icons.AddBusiness sx={{ color: "rgb(118 186 27)" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Shops" />
+                                </ListItem>
+                            </NavLink>
+
+                            <NavLink
+                                to='shopproduct'
+                                style={({ isActive }) => ({
+                                    color: isActive ? "#ffffff" : "#757575",
+                                    background: isActive ? colors.primary : "#ffffff",
+                                    display: "flex",
+                                    // padding: "6px 6.6vw 4px 18px",
+                                    textDecoration: "none",
+                                    borderRadius: "50px 0 0 50px"
+                                })}
+                            >
+                                <ListItem button sx={{ pl: 6 }}>
+                                    <ListItemIcon>
+                                        <Icons.PendingActions sx={{ color: "rgb(118 186 27)" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Pending products" />
+                                </ListItem>
+                            </NavLink>
+
+                            <NavLink
+                                to='declined'
+                                style={({ isActive }) => ({
+                                    color: isActive ? "#ffffff" : "#757575",
+                                    background: isActive ? colors.primary : "#ffffff",
+                                    display: "flex",
+                                    // padding: "6px 6.6vw 4px 18px",
+                                    textDecoration: "none",
+                                    borderRadius: "50px 0 0 50px"
+                                })}
+                            >
+                                <ListItem button sx={{ pl: 6 }}>
+                                    <ListItemIcon>
+                                        <Icons.PendingActions sx={{ color: "rgb(118 186 27)" }} />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Declined products" />
+                                </ListItem>
+                            </NavLink>
+                        </List>
+                    </Collapse>
                     <NavLink
                         to='order'
                         style={({ isActive }) => ({
@@ -844,7 +896,7 @@ export default function MiniDrawer() {
 
 
                             <NavLink
-                                to='valueads'
+                                to='valuelist'
                                 style={({ isActive }) => ({
                                     color: isActive ? "#ffffff" : "#757575",
                                     background: isActive ? colors.primary : "#ffffff",

@@ -5,21 +5,9 @@ import * as Icons from "@mui/icons-material";
 import moment from "moment";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import { ProductImageUrl } from "../../Constant";
 
-const images = [
-  {
-    id: 1,
-    label: "Bird",
-    imgPath:
-      "https://cdn6.f-cdn.com/contestentries/1301217/27758306/5acbe984b11d9_thumb900.jpg",
-  },
-  {
-    id: 2,
-    label: "ID card ",
-    imgPath:
-      "https://sb.kaleidousercontent.com/67418/800x533/c5b0716f3d/animals-0b6addc448f4ace0792ba4023cf06ede8efa67b15e748796ef7765ddeb45a6fb.jpg",
-  },
-];
+
 
 const ProductModal = ({ open, setOpen, id, productDetails, status, title }) => {
   return (
@@ -99,10 +87,10 @@ const ProductModal = ({ open, setOpen, id, productDetails, status, title }) => {
               {/* image slider starts here */}
               <div>
                 <Carousel showThumbs={false} internal={4000} showStatus={false}>
-                  {images.map((image) => (
+                  {productDetails.images.map((image) => (
                     <img
                       loading="lazy"
-                      src={image.imgPath}
+                      src={`${ProductImageUrl}${image}`}
                       key={image.id}
                       style={{
                         width: "100%",
