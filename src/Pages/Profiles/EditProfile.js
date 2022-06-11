@@ -46,7 +46,9 @@ const EditProfile = ({setIsUpdating, setOpen}) => {
       
       if (!image.file) { //If Admin image not edited, convert image path to file object
 
-        const url = `/admin/profile/${currUser.image_url}`;
+        //Proxy server if environment is development, otherwise set the full url
+        const url = process.env.NODE_ENV === "development"? `admin/profile/${currUser.image_url}`:`https://bellefu.inmotionhub.xyz/admin/profile/${currUser.image_url}`;
+
         const response = await fetch(url);
         const arrBuff = await response.arrayBuffer();  //Get read response as array buffer
         const imgExt = currUser.image_url.match(/.\w+$/)[0].substring(1);  //Get image extension
@@ -66,7 +68,7 @@ const EditProfile = ({setIsUpdating, setOpen}) => {
         setIsUpdating(true);
         setIsLoading(true);
 
-        const response = await axios.post(`api/v3/update/admin`, formData);
+        const response = await axios.post(`${APIDATA}update/admin`, formData);
         dispatch(updateProfileDetails(response.data.data));
 
         setIsUpdating(false);
