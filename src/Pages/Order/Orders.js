@@ -63,7 +63,6 @@ export default function AdminList() {
     };
 
     useEffect(() => {
-
         const getprogram = async () => {
             await axios.get(`${APIDATA}list/orders`)
                 .then(res => setProgram(res.data.data))

@@ -292,7 +292,7 @@ function Pending() {
         if (res.data.status) {
           setOpen3(false);
           setReason("");
-          seReload(prev => prev + 1)
+          setReload(prev => prev + 1)
           toast.error("Product Declined", {
             position: "top-right",
           });
