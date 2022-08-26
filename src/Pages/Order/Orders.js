@@ -34,10 +34,6 @@ import moment from "moment";
 
 
 
-
-const APIDATAA = 'https://bellefu.inmotionhub.xyz/api/v3/list/orders'
-
-
 export default function AdminList() {
 
     const [page, setPage] = useState(0);

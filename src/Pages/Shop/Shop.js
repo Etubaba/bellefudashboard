@@ -32,7 +32,7 @@ import { useNavigate } from "react-router-dom";
 //import { useDispatch } from 'react-redux'
 //import { subcat } from '../../Features/LoginSlice';
 import Tooltip from '@mui/material/Tooltip';
-import { PageTitle, CircularIndeterminate } from "../../Constant"
+import { PageTitle, CircularIndeterminate, BASE_URL } from "../../Constant"
 import axios from "axios";
 //import { toast } from 'react-toastify';
 
@@ -187,7 +187,7 @@ export default function Shops() {
     useEffect(() => {
 
         const getShops = async () => {
-            await axios.get("https://bellefu.inmotionhub.xyz/api/shop/view")
+            await axios.get(`${BASE_URL}api/shop/view`)
                 .then(res => {
                     console.log(res.data.data.data)
                     setShops(res.data.data.data)
@@ -245,9 +245,9 @@ export default function Shops() {
                                         <img
                                             style={{ width: 60, height: 56 }}
                                             alt='error'
-                                            src={`https://bellefu.inmotionhub.xyz/get/store/image/${row.logo}`} />
+                                            src={`${BASE_URL}get/store/image/${row.logo}`} />
                                     </TableCell>
-                                    <TableCell style={{font: "20px", fontWeight: "bold"}}>{row.name}</TableCell>
+                                    <TableCell style={{ font: "20px", fontWeight: "bold" }}>{row.name}</TableCell>
                                     <TableCell >{row.description}</TableCell>
                                     <TableCell >{row.slug}</TableCell>
 

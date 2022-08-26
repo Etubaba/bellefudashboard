@@ -27,7 +27,7 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import * as Icons from '@mui/icons-material'
-import { PageTitle, CircularIndeterminate, APIDATA, colors } from "../../Constant"
+import { PageTitle, CircularIndeterminate, APIDATA, colors, BASE_URL } from "../../Constant"
 import axios from "axios";
 import { toast } from "react-toastify";
 import moment from "moment";
@@ -35,7 +35,7 @@ import moment from "moment";
 
 
 
-const APIDATAA = 'https://bellefu.inmotionhub.xyz/api/v3/get/all/commercial'
+const APIDATAA = `${BASE_URL}api/v3/get/all/commercial`
 
 
 export default function AdminList() {
@@ -300,7 +300,7 @@ export default function AdminList() {
                                 >
                                     <TableCell component="th" scope="row">
                                         <img
-                                            src={`https://bellefu.inmotionhub.xyz/get/commercial/image/${row.image}`}
+                                            src={`${BASE_URL}get/commercial/image/${row.image}`}
                                             alt="error"
                                             style={imgStyle}
                                         />
@@ -381,7 +381,7 @@ export default function AdminList() {
                                                 opacity={0.2}
                                             >
                                                 <Box sx={modal.slide}>
-                                                    <img src={`https://bellefu.inmotionhub.xyz/get/custom/image/${image}`} alt="image" style={{ width: '100%' }} />
+                                                    <img src={`${BASE_URL}get/custom/image/${image}`} alt="image" style={{ width: '100%' }} />
                                                 </Box>
                                             </Modal>
 

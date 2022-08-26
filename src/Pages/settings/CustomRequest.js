@@ -24,7 +24,7 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import * as Icons from '@mui/icons-material'
-import { PageTitle, CircularIndeterminate, APIDATA } from "../../Constant"
+import { PageTitle, CircularIndeterminate, APIDATA, BASE_URL } from "../../Constant"
 import axios from "axios";
 import { toast } from "react-toastify";
 import moment from "moment";
@@ -259,7 +259,7 @@ export default function AdminList() {
                                                 opacity={0.2}
                                             >
                                                 <Box sx={modal.slide}>
-                                                    <img src={`https://bellefu.inmotionhub.xyz/get/custom/image/${image}`} alt="image" style={{ width: '100%' }} />
+                                                    <img src={`${BASE_URL}get/custom/image/${image}`} alt="image" style={{ width: '100%' }} />
                                                 </Box>
                                             </Modal>
 

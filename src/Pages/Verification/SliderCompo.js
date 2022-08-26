@@ -1,5 +1,6 @@
 import React from 'react'
 import { Carousel } from 'react-responsive-carousel'
+import { BASE_URL } from '../../Constant'
 
 
 const SliderCompo = ({ image }) => {
@@ -9,7 +10,7 @@ const SliderCompo = ({ image }) => {
       {image.map((image, index) => (
         <div key={index}>
           <img style={{ height: "60%", width: "100%" }}
-            src={`https://bellefu.inmotionhub.xyz/get/verification/image/${image}`} />
+            src={`${BASE_URL}get/verification/image/${image}`} />
         </div>))}
 
     </Carousel>

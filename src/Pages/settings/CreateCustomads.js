@@ -1,5 +1,5 @@
 
-import { PageTitle, colors, APIDATA } from "../../Constant";
+import { PageTitle, colors, APIDATA, BASE_URL } from "../../Constant";
 import axios from "axios";
 import { useState, useEffect } from "react";
 // import { Button, Paper ,Grid, Typography} from "@mui/material";
@@ -25,7 +25,7 @@ export default function CreateCategory() {
     const [des, setDes] = useState('')
 
 
-    const apiUrl = 'https://bellefu.inmotionhub.xyz/api/v3/add/announcement'
+    const apiUrl = `${BASE_URL}api/v3/add/announcement`
 
 
 

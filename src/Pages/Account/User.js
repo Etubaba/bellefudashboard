@@ -45,7 +45,7 @@ import { useState, useEffect } from "react";
 
 import * as Icons from "@mui/icons-material";
 
-import { PageTitle, CircularIndeterminate, APIDATA } from "../../Constant";
+import { PageTitle, CircularIndeterminate, APIDATA, BASE_URL } from "../../Constant";
 import axios from "axios";
 
 import { toast } from "react-toastify";
@@ -79,16 +79,16 @@ export default function AdminList() {
   const [modalopen2, setModalopen2] = useState(false);
   const [modalopen3, setModalopen3] = useState(false);
 
-  const handleOpen1 = (event) =>{ setModalopen(true);setUserdataholder(event)} 
-  const handleClose2 = () =>  setModalopen(false);
+  const handleOpen1 = (event) => { setModalopen(true); setUserdataholder(event) }
+  const handleClose2 = () => setModalopen(false);
 
 
-  const handleOpen2 = (event) =>{ setModalopen2(true);setActiveuserid(event)} 
-  const handleClose3 = () =>  setModalopen2(false);
+  const handleOpen2 = (event) => { setModalopen2(true); setActiveuserid(event) }
+  const handleClose3 = () => setModalopen2(false);
 
 
-  const handleOpen3 = (event) =>{ setModalopen3(true);setInactiveuserid(event)} 
-  const handleClose4 = () =>  setModalopen3(false);
+  const handleOpen3 = (event) => { setModalopen3(true); setInactiveuserid(event) }
+  const handleClose4 = () => setModalopen3(false);
 
   // filter states
   const [countrys, setCountrys] = useState("");
@@ -106,10 +106,10 @@ export default function AdminList() {
       !e.target.value
         ? program
         : program.filter((person) =>
-            person.first_name
-              .toLowerCase()
-              .includes(e.target.value.toLowerCase())
-          )
+          person.first_name
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase())
+        )
     );
   };
 
@@ -126,8 +126,8 @@ export default function AdminList() {
       countrys === "Show all"
         ? program
         : program?.filter((data) => {
-            return data.country === e.target.value;
-          })
+          return data.country === e.target.value;
+        })
     );
   };
 
@@ -166,10 +166,10 @@ export default function AdminList() {
 
   //   console.log(program)
   // useEffect calls###########################
-useEffect(()=>{
-  setLolo1(statusChange.userStatus);
+  useEffect(() => {
+    setLolo1(statusChange.userStatus);
 
-},[]);
+  }, []);
   useEffect(() => {
     setLoader(true);
     const getprogram = async () => {
@@ -199,8 +199,8 @@ useEffect(()=>{
 
   // ########################################
 
-  
- 
+
+
 
 
   return (
@@ -371,7 +371,7 @@ useEffect(()=>{
                   >
                     <TableCell component="th" scope="row">
                       <img
-                        src={`https://bellefu.inmotionhub.xyz/images/user/${row.avatar}`}
+                        src={`${BASE_URL}images/user/${row.avatar}`}
                         style={{ width: 100, height: 100 }}
                         alt="Error"
                       />
@@ -387,7 +387,7 @@ useEffect(()=>{
                           mb: 0.4,
                           textAlign: "center",
                           p: 0.5,
-                          bgcolor:[row.status==="active"?"orange":"red"] ,
+                          bgcolor: [row.status === "active" ? "orange" : "red"],
                           color: "#ffff",
                         }}
                       >
@@ -410,7 +410,7 @@ useEffect(()=>{
                       <Box>
                         <Tooltip title="View">
                           <IconButton
-                            onClick={()=>handleOpen1(row)}
+                            onClick={() => handleOpen1(row)}
 
                           >
                             <Icons.RemoveRedEyeOutlined />
@@ -419,14 +419,14 @@ useEffect(()=>{
 
                         <Tooltip title="Activate">
                           <IconButton
-                          onClick={()=>handleOpen2(row)}
+                            onClick={() => handleOpen2(row)}
                           >
                             <Icons.LockOpenOutlined />
                           </IconButton>
                         </Tooltip>
                         <Tooltip title="Deactivate">
                           <IconButton
-                          onClick={()=>handleOpen3(row)}
+                            onClick={() => handleOpen3(row)}
                           >
                             <Icons.LockOutlined />
                           </IconButton>
@@ -434,16 +434,16 @@ useEffect(()=>{
 
                         <Tooltip title="Delete">
                           <IconButton
-                        //   onClick={() => {
-                        //       setPushId(row.id)
-                        //       setOpen2(true)
-                        //   }}
+                          //   onClick={() => {
+                          //       setPushId(row.id)
+                          //       setOpen2(true)
+                          //   }}
                           >
                             <Icons.DeleteOutline />
                           </IconButton>
                         </Tooltip>
                         <Modal
-                        sx={{opacity:0.25}}
+                          sx={{ opacity: 0.25 }}
                           open={modalopen}
                           onClose={handleClose2}
                           aria-labelledby="modal-modal-title"
@@ -467,7 +467,7 @@ useEffect(()=>{
                           </Paper>
                         </Modal>
                         <Modal
-                        sx={{opacity:0.25}}
+                          sx={{ opacity: 0.25 }}
                           open={modalopen2}
                           onClose={handleClose3}
                           aria-labelledby="modal-modal-title"
@@ -487,11 +487,11 @@ useEffect(()=>{
                               borderRadius: 8,
                             }}
                           >
-                            <Activate  close={handleClose3} active={activeuserid}/>
+                            <Activate close={handleClose3} active={activeuserid} />
                           </Paper>
                         </Modal>
                         <Modal
-                        sx={{opacity:0.25}}
+                          sx={{ opacity: 0.25 }}
                           open={modalopen3}
                           onClose={handleClose4}
                           aria-labelledby="modal-modal-title"
@@ -511,7 +511,7 @@ useEffect(()=>{
                               borderRadius: 8,
                             }}
                           >
-                            <Deactivate close={handleClose4} inactive={inactiveuserid}/>
+                            <Deactivate close={handleClose4} inactive={inactiveuserid} />
                           </Paper>
                         </Modal>
                       </Box>

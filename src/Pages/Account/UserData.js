@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PageTitle, colors, APIDATA } from "../../Constant";
+import { PageTitle, colors, APIDATA, BASE_URL } from "../../Constant";
 import { loginStatus, updateProfileDetails } from "../../Features/LoginSlice";
 import * as Icons from "@mui/icons-material";
 
@@ -40,7 +40,7 @@ const UserData = (props) => {
   const [modalopen2, setModalopen2] = useState(false);
   const [modalopen3, setModalopen3] = useState(false);
 
-  
+
   const handleOpen2 = () => {
     setModalopen2(true);
   };
@@ -64,7 +64,7 @@ const UserData = (props) => {
         <div>
           <Avatar
             alt="profile image"
-            src={`https://bellefu.inmotionhub.xyz/admin/profile/${activeuserid.avatar}`}
+            src={`${BASE_URL}admin/profile/${activeuserid.avatar}`}
             variant="circular"
             sx={{
               display: "inline-block",
@@ -85,7 +85,7 @@ const UserData = (props) => {
           variant="outlined"
           size="small"
           value={activeuserid.first_name + " " + activeuserid.last_name}
-          //   onChange={(evt) => setFullName(evt.target.value)}
+        //   onChange={(evt) => setFullName(evt.target.value)}
         />
       </div>
       <div style={{ width: "95%", margin: "auto", marginBottom: "20px" }}>
@@ -97,7 +97,7 @@ const UserData = (props) => {
           type="number"
           size="small"
           value={activeuserid.phone}
-          //   onChange={(evt) => setPhoneNumber(evt.target.value)}
+        //   onChange={(evt) => setPhoneNumber(evt.target.value)}
         />
       </div>
       <div style={{ width: "95%", margin: "auto", marginBottom: "20px" }}>
@@ -109,7 +109,7 @@ const UserData = (props) => {
           type="email"
           size="small"
           value={activeuserid.email}
-          //   onChange={(evt) => setEmail(evt.target.value)}
+        //   onChange={(evt) => setEmail(evt.target.value)}
         />
       </div>
       <div
@@ -129,7 +129,7 @@ const UserData = (props) => {
             type="text"
             size="small"
             value={activeuserid.gender}
-            //   onChange={(evt) => setEmail(evt.target.value)}
+          //   onChange={(evt) => setEmail(evt.target.value)}
           />
         </div>
         <div>
@@ -141,7 +141,7 @@ const UserData = (props) => {
             type="text"
             size="small"
             value={activeuserid.country}
-            //   onChange={(evt) => setEmail(evt.target.value)}
+          //   onChange={(evt) => setEmail(evt.target.value)}
           />
         </div>
       </div>

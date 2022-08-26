@@ -1,5 +1,5 @@
 import React from "react";
-import { PageTitle, colors, APIDATA } from "../../Constant";
+import { PageTitle, colors, APIDATA, BASE_URL } from "../../Constant";
 import EditProfile from "./EditProfile"
 import { useSelector } from "react-redux";
 
@@ -35,7 +35,7 @@ export default function Profles() {
   const [open, setOpen] = React.useState(false);
   const [isUpdating, setIsUpdating] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => { if (!isUpdating) setOpen(false)};
+  const handleClose = () => { if (!isUpdating) setOpen(false) };
   const select = useSelector(loginStatus);
   // ? JSON.parse(localStorage.getItem('prof'))
   const userDatas = select.profiles;
@@ -90,12 +90,12 @@ export default function Profles() {
           <Box sx={{ flex: 0.5 }}>
             <Avatar
               alt="Remy Sharp"
-              src= {`https://bellefu.inmotionhub.xyz/admin/profile/${userDatas.image_url}`}
+              src={`${BASE_URL}admin/profile/${userDatas.image_url}`}
               sx={{ width: 300, height: 300 }}
             />
           </Box>
           <Box>
-            
+
             <Box
               sx={{
                 display: "grid",
@@ -107,14 +107,14 @@ export default function Profles() {
                 id="outlined-disabled"
                 label="Name"
                 defaultValue={userDatas.name}
-                sx={{ margin: 3, width: 300}}
+                sx={{ margin: 3, width: 300 }}
               />
               <TextField
                 disabled
                 id="outlined-disabled"
                 label="Position"
-                defaultValue={userDatas.role===1?"Super-Admin":userDatas.role===2? "Sub-Admin1":userDatas.role===3? "Sub-Admin2":null}
-                sx={{ margin: 3, width: 300,position: "relative", left: 25  }}
+                defaultValue={userDatas.role === 1 ? "Super-Admin" : userDatas.role === 2 ? "Sub-Admin1" : userDatas.role === 3 ? "Sub-Admin2" : null}
+                sx={{ margin: 3, width: 300, position: "relative", left: 25 }}
               />
               <TextField
                 disabled
@@ -129,11 +129,11 @@ export default function Profles() {
                 label="Email"
                 size="4px"
                 defaultValue={userDatas.email}
-                sx={{ margin: 3, width: 300, position: "relative", left: 25}}
+                sx={{ margin: 3, width: 300, position: "relative", left: 25 }}
               />
             </Box>
             <Box>
-             
+
               <Button
                 onClick={handleOpen}
                 style={{
@@ -151,12 +151,12 @@ export default function Profles() {
 
               <Modal
                 open={open}
-                onClose={!isUpdating?handleClose:null}
+                onClose={!isUpdating ? handleClose : null}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
                 <Paper sx={{
-                  width:"30%",
+                  width: "30%",
                   position: "absolute",
                   top: "50%",
                   left: "50%",
@@ -164,9 +164,9 @@ export default function Profles() {
                   bgcolor: "background.paper",
                   boxShadow: 24,
                   pt: 4,
-                  borderRadius:8
-              }}>
-                    <EditProfile setIsUpdating={setIsUpdating} setOpen={setOpen} isUpdating={isUpdating} />
+                  borderRadius: 8
+                }}>
+                  <EditProfile setIsUpdating={setIsUpdating} setOpen={setOpen} isUpdating={isUpdating} />
                 </Paper>
               </Modal>
             </Box>

@@ -14,12 +14,12 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { StyleSheet, css } from 'aphrodite';
-import { CircularIndeterminate, APIDATA } from "../../../Constant"
+import { CircularIndeterminate, APIDATA, BASE_URL } from "../../../Constant"
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
 
-const slideview = 'https://bellefu.inmotionhub.xyz/get/sliders/image/'
+const slideview = `${BASE_URL}get/sliders/image/`
 const styles = StyleSheet.create({
   tcell: {
     color: '#FCFFF9',
