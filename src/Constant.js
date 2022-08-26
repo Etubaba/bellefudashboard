@@ -57,11 +57,12 @@ function Backdrop() {
 }
 
 // api datas
+//https://bellefu.inmotionhub.xyz/
 
-const APIDATA = "https://bellefu.inmotionhub.xyz/api/v3/";
+const APIDATA = "https://phpstack-794034-2715115.cloudwaysapps.com/api/v3/";
 
-const ProductImageUrl = 'https://bellefu.inmotionhub.xyz/get/product/image/'
+const ProductImageUrl = 'https://phpstack-794034-2715115.cloudwaysapps.com/get/product/image/'
 
-export const AnouncementUrl = 'https://bellefu.inmotionhub.xyz/get/custom/image/'
+export const AnouncementUrl = 'https://phpstack-794034-2715115.cloudwaysapps.com/get/custom/image/'
 
 export { colors, PageTitle, APIDATA, CircularIndeterminate, Backdrop, ProductImageUrl };
