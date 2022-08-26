@@ -32,7 +32,7 @@ import { Navigate, useNavigate, Link } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { subcat } from '../../Features/LoginSlice'
 import Tooltip from '@mui/material/Tooltip';
-import { APIDATA, PageTitle, CircularIndeterminate } from "../../Constant"
+import { APIDATA, PageTitle, CircularIndeterminate, BASE_URL } from "../../Constant"
 import axios from "axios";
 import { toast } from 'react-toastify';
 
@@ -278,7 +278,7 @@ export default function CategoryList() {
                                         <img
                                             style={{ width: 60, height: 56 }}
                                             alt='error'
-                                            src={`https://bellefu.inmotionhub.xyz/get/category/image/${row.image}`} />
+                                            src={`${BASE_URL}get/category/image/${row.image}`} />
                                     </TableCell>
                                     <TableCell >{row.name}</TableCell>
                                     <TableCell >{row.subcategories}</TableCell>
