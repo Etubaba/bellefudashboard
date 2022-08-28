@@ -194,10 +194,7 @@ export default function AdminList() {
         }
     };
 
-
-
-
-    console.log('jj')
+    console.log('j')
 
 
 
