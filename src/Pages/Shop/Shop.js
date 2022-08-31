@@ -31,8 +31,13 @@ import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import { useNavigate } from "react-router-dom";
 //import { useDispatch } from 'react-redux'
 //import { subcat } from '../../Features/LoginSlice';
+<<<<<<< HEAD
 import Tooltip from "@mui/material/Tooltip";
 import { PageTitle, CircularIndeterminate, BASE_URL } from "../../Constant";
+=======
+import Tooltip from '@mui/material/Tooltip';
+import { PageTitle, CircularIndeterminate, BASE_URL } from "../../Constant"
+>>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
 import axios from "axios";
 //import { toast } from 'react-toastify';
 
@@ -196,6 +201,7 @@ export default function Shops() {
     getShops();
   }, []);
 
+<<<<<<< HEAD
   return (
     <Box>
       <Box style={{ display: "flex", justifyContent: "space-between" }}>
@@ -212,6 +218,16 @@ export default function Shops() {
               <TableCell sx={{ color: "#ffff" }}>
                 <strong>Name</strong>
               </TableCell>
+=======
+        const getShops = async () => {
+            await axios.get(`${BASE_URL}api/shop/view`)
+                .then(res => {
+                    console.log(res.data.data.data)
+                    setShops(res.data.data.data)
+                })
+                .catch(err => console.log(err))
+        }
+>>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
 
               <TableCell sx={{ color: "#ffff" }}>
                 <strong> Description</strong>
@@ -260,7 +276,78 @@ export default function Shops() {
                           </IconButton>
                         </Tooltip>
 
+<<<<<<< HEAD
                         {/* <Tooltip title='Edit Category'>
+=======
+
+        getShops()
+    }, [])
+
+    return (
+        <Box>
+            <Box style={{ display: "flex", justifyContent: "space-between" }}>
+                <PageTitle title="Shops " variant="h4" component="h2" />
+
+
+            </Box>
+            <Toolbar />
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow sx={{ bgcolor: '#76ba1b' }}>
+                            <TableCell sx={{ color: '#ffff' }}>
+                                <strong>Image</strong>
+                            </TableCell>
+                            <TableCell sx={{ color: '#ffff' }}>
+                                <strong>Name</strong>
+                            </TableCell>
+
+
+                            <TableCell sx={{ color: '#ffff' }}>
+                                <strong> Description</strong>
+                            </TableCell>
+                            <TableCell sx={{ color: '#ffff' }}>
+                                <strong>Status </strong>
+                            </TableCell>
+                            <TableCell sx={{ color: '#ffff' }}>
+                                <strong>Action</strong>
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {shops === null ? <CircularIndeterminate /> : shops
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .map((row) => (
+                                <TableRow
+                                    key={row.id}
+                                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        <img
+                                            style={{ width: 60, height: 56 }}
+                                            alt='error'
+                                            src={`${BASE_URL}get/store/image/${row.logo}`} />
+                                    </TableCell>
+                                    <TableCell style={{ font: "20px", fontWeight: "bold" }}>{row.name}</TableCell>
+                                    <TableCell >{row.description}</TableCell>
+                                    <TableCell >{row.slug}</TableCell>
+
+                                    <TableCell >
+                                        <Box >
+                                            <Tooltip title='View Products'>
+
+                                                <IconButton onClick={() => {
+                                                    navigate(`/shop/${row.id}`)
+                                                }} >
+                                                    <RemoveRedEyeOutlinedIcon sx={{ color: 'green' }} />
+                                                </IconButton>
+                                            </Tooltip>
+
+
+
+
+                                            {/* <Tooltip title='Edit Category'>
+>>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
                                                 <IconButton onClick={() => {
                                                     setOpen2(true)
                                                     setReplayID(row.id)

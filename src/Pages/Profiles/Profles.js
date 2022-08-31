@@ -1,8 +1,8 @@
 import React from "react";
 import { PageTitle, colors, APIDATA, BASE_URL } from "../../Constant";
+
 import EditProfile from "./EditProfile";
 import { useSelector } from "react-redux";
-
 import {
   InputLabel,
   MenuItem,
@@ -33,9 +33,11 @@ export default function Profles() {
   const [open, setOpen] = React.useState(false);
   const [isUpdating, setIsUpdating] = React.useState(false);
   const handleOpen = () => setOpen(true);
+
   const handleClose = () => {
     if (!isUpdating) setOpen(false);
   };
+
   const select = useSelector(loginStatus);
   // ? JSON.parse(localStorage.getItem('prof'))
   const userDatas = select.profiles;
@@ -74,7 +76,7 @@ export default function Profles() {
                   variant="h6"
                   sx={{ fontSize: 13, fontStyle: "italic" }}
                 >
-                  Welcome 👌😍
+                  Welcome
                 </Typography>
                 <Typography variant="h5">{userDatas.name}</Typography>
               </Box>

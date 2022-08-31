@@ -27,6 +27,7 @@ const descriptionStyle = {
   paddingBottom: "0px",
 };
 
+<<<<<<< HEAD
 const ShopProduct = ({ shopProduct }) => (
   <div style={itemStyle}>
     <div>
@@ -72,5 +73,22 @@ const ShopProduct = ({ shopProduct }) => (
     </div>
   </div>
 );
+=======
+const ShopProduct = ({ shopProduct }) => (<div style={itemStyle}>
+  <div>
+    <img src={`${BASE_URL}get/product/image/${shopProduct.images[0]}`} alt={shopProduct.title} width={220} height={220} style={{ borderRadius: "10px" }} />
+  </div>
+  <div style={{ paddingLeft: "15px" }}>
+    <p><span>Name</span>: {shopProduct.title}</p>
+    <div style={descriptionStyle}>
+      <p>Description:</p> <p style={{ paddingLeft: "10px" }} dangerouslySetInnerHTML={{ __html: shopProduct.description }}></p>
+    </div>
+    <p><span>Normal Price</span>: <span dangerouslySetInnerHTML={{ __html: shopProduct.currencySymbol }}></span>{shopProduct.price}</p>
+    <p><span>Promo Price</span>: <span dangerouslySetInnerHTML={{ __html: shopProduct.currencySymbol }}></span>{shopProduct.promoPrice}</p>
+    <p><span>Product Plan</span>: {shopProduct.planName}</p>
+    <p><span>Owner</span>: {shopProduct.username}</p>
+  </div>
+</div>)
+>>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
 
 export default ShopProduct;

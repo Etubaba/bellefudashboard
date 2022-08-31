@@ -55,6 +55,7 @@ function Backdrop() {
 }
 
 // api datas
+<<<<<<< HEAD
 export const BASE_URL = "https://phpstack-794034-2715115.cloudwaysapps.com/";
 const APIDATA = "https://phpstack-794034-2715115.cloudwaysapps.com/api/v3/";
 
@@ -72,3 +73,15 @@ export {
   Backdrop,
   ProductImageUrl,
 };
+=======
+//https://bellefu.inmotionhub.xyz/
+export const BASE_URL = 'https://phpstack-794034-2715115.cloudwaysapps.com/'
+
+export const APIDATA = "https://phpstack-794034-2715115.cloudwaysapps.com/api/v3/";
+
+const ProductImageUrl = 'https://phpstack-794034-2715115.cloudwaysapps.com/get/product/image/'
+
+export const AnouncementUrl = 'https://phpstack-794034-2715115.cloudwaysapps.com/get/custom/image/'
+
+export { colors, PageTitle, CircularIndeterminate, Backdrop, ProductImageUrl };
+>>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d

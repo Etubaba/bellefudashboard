@@ -23,8 +23,27 @@ import { StyleSheet, css } from "aphrodite";
 import { CircularIndeterminate, APIDATA, BASE_URL } from "../../../Constant";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {
+  TableFooter,
+  Tooltip,
+  TableHead,
+  Divider,
+  TableRow,
+  Typography,
+  Paper,
+  Button,
+  IconButton,
+  Modal,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import { StyleSheet, css } from "aphrodite";
+import { CircularIndeterminate, APIDATA, BASE_URL } from "../../../Constant";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const slideview = `${BASE_URL}get/sliders/image/`;
+
 const styles = StyleSheet.create({
   tcell: {
     color: "#FCFFF9",

@@ -107,7 +107,7 @@ const EditProfile = ({ setIsUpdating, setOpen }) => {
               src={
                 imageChanged
                   ? image.previewUrl
-                  : `${BASE_URL}admin/profile/${currUser.image_url}`
+                  : `${BASE_URL}/admin/profile/${currUser.image_url}`
               }
               variant="circular"
               className="avatar"
