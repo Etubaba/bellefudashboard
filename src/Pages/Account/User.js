@@ -42,16 +42,12 @@ import { useState, useEffect } from "react";
 
 import * as Icons from "@mui/icons-material";
 
-<<<<<<< HEAD
 import {
   PageTitle,
   CircularIndeterminate,
   APIDATA,
   BASE_URL,
 } from "../../Constant";
-=======
-import { PageTitle, CircularIndeterminate, APIDATA, BASE_URL } from "../../Constant";
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
 import axios from "axios";
 
 import { toast } from "react-toastify";
@@ -82,14 +78,10 @@ export default function AdminList() {
   const [modalopen2, setModalopen2] = useState(false);
   const [modalopen3, setModalopen3] = useState(false);
 
-<<<<<<< HEAD
   const handleOpen1 = (event) => {
     setModalopen(true);
     setUserdataholder(event);
   };
-=======
-  const handleOpen1 = (event) => { setModalopen(true); setUserdataholder(event) }
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
   const handleClose2 = () => setModalopen(false);
 
   const handleOpen2 = (event) => {
@@ -98,18 +90,10 @@ export default function AdminList() {
   };
   const handleClose3 = () => setModalopen2(false);
 
-<<<<<<< HEAD
   const handleOpen3 = (event) => {
     setModalopen3(true);
     setInactiveuserid(event);
   };
-=======
-  const handleOpen2 = (event) => { setModalopen2(true); setActiveuserid(event) }
-  const handleClose3 = () => setModalopen2(false);
-
-
-  const handleOpen3 = (event) => { setModalopen3(true); setInactiveuserid(event) }
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
   const handleClose4 = () => setModalopen3(false);
 
   // filter states
@@ -128,10 +112,10 @@ export default function AdminList() {
       !e.target.value
         ? program
         : program.filter((person) =>
-          person.first_name
-            .toLowerCase()
-            .includes(e.target.value.toLowerCase())
-        )
+            person.first_name
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase())
+          )
     );
   };
 
@@ -148,18 +132,8 @@ export default function AdminList() {
       countrys === "Show all"
         ? program
         : program?.filter((data) => {
-          return data.country === e.target.value;
-        })
-    );
-  };
-
-  const toastCaller = () => {
-    toast.error(
-      "There's no user for the Filtered Name/selected country select Show-All and try Again",
-      {
-        position: "top-center",
-        toastId: "success1",
-      }
+            return data.country === e.target.value;
+          })
     );
   };
 
@@ -190,10 +164,6 @@ export default function AdminList() {
   // useEffect calls###########################
   useEffect(() => {
     setLolo1(statusChange.userStatus);
-<<<<<<< HEAD
-=======
-
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
   }, []);
   useEffect(() => {
     setLoader(true);
@@ -210,8 +180,6 @@ export default function AdminList() {
     getprogram();
   }, []);
 
-  //   #################
-  console.log(lolo1);
   useEffect(() => {
     const getcountries = async () => {
       await axios
@@ -225,13 +193,6 @@ export default function AdminList() {
 
   // ########################################
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
   return (
     <Box>
       <Box style={{ display: "flex", justifyContent: "space-between" }}>
@@ -389,7 +350,7 @@ export default function AdminList() {
             {program === null ? (
               <Loader isLoading={loader} />
             ) : program.length === 0 ? (
-              console.log("Loading")
+              console.log()
             ) : (
               program
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -400,13 +361,8 @@ export default function AdminList() {
                   >
                     <TableCell component="th" scope="row">
                       <img
-<<<<<<< HEAD
                         src={`${BASE_URL}get/user/images/${row.avatar}`}
                         style={{ width: 80, height: 80 }}
-=======
-                        src={`${BASE_URL}images/user/${row.avatar}`}
-                        style={{ width: 100, height: 100 }}
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
                         alt="Error"
                       />
                     </TableCell>
@@ -443,37 +399,18 @@ export default function AdminList() {
                     <TableCell>
                       <Box>
                         <Tooltip title="View">
-<<<<<<< HEAD
                           <IconButton onClick={() => handleOpen1(row)}>
-=======
-                          <IconButton
-                            onClick={() => handleOpen1(row)}
-
-                          >
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
                             <Icons.RemoveRedEyeOutlined />
                           </IconButton>
                         </Tooltip>
 
                         <Tooltip title="Activate">
-<<<<<<< HEAD
                           <IconButton onClick={() => handleOpen2(row)}>
-=======
-                          <IconButton
-                            onClick={() => handleOpen2(row)}
-                          >
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
                             <Icons.LockOpenOutlined />
                           </IconButton>
                         </Tooltip>
                         <Tooltip title="Deactivate">
-<<<<<<< HEAD
                           <IconButton onClick={() => handleOpen3(row)}>
-=======
-                          <IconButton
-                            onClick={() => handleOpen3(row)}
-                          >
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
                             <Icons.LockOutlined />
                           </IconButton>
                         </Tooltip>
@@ -533,14 +470,10 @@ export default function AdminList() {
                               borderRadius: 8,
                             }}
                           >
-<<<<<<< HEAD
                             <Activate
                               close={handleClose3}
                               active={activeuserid}
                             />
-=======
-                            <Activate close={handleClose3} active={activeuserid} />
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
                           </Paper>
                         </Modal>
                         <Modal
@@ -564,14 +497,10 @@ export default function AdminList() {
                               borderRadius: 8,
                             }}
                           >
-<<<<<<< HEAD
                             <Deactivate
                               close={handleClose4}
                               inactive={inactiveuserid}
                             />
-=======
-                            <Deactivate close={handleClose4} inactive={inactiveuserid} />
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
                           </Paper>
                         </Modal>
                       </Box>

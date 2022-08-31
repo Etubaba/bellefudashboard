@@ -28,7 +28,7 @@ import Divider from "@mui/material/Divider";
 
 import { styled } from "@mui/material/styles";
 import { Navigate, useNavigate, Link } from "react-router-dom";
-<<<<<<< HEAD
+
 import { useDispatch } from "react-redux";
 import { subcat } from "../../Features/LoginSlice";
 import Tooltip from "@mui/material/Tooltip";
@@ -38,12 +38,7 @@ import {
   CircularIndeterminate,
   BASE_URL,
 } from "../../Constant";
-=======
-import { useDispatch } from 'react-redux'
-import { subcat } from '../../Features/LoginSlice'
-import Tooltip from '@mui/material/Tooltip';
-import { APIDATA, PageTitle, CircularIndeterminate, BASE_URL } from "../../Constant"
->>>>>>> d6c02916bf0c70a76fd1bfa8596c5fca2006d00d
+
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -202,10 +197,8 @@ export default function CategoryList() {
         .then((res) => setProgram(res.data.data))
         .catch((err) => console.log(err));
     };
-    getprogram()
-}, []);
-
-
+    getprogram();
+  }, []);
 
   return (
     <Box>
@@ -241,7 +234,7 @@ export default function CategoryList() {
             ) : (
               program
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row,index) => (
+                .map((row, index) => (
                   <TableRow
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
