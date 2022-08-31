@@ -118,7 +118,8 @@ function Pending() {
       fontWeight: "bold",
     },
     productImg: {
-      width: "140px",
+      width: "70px",
+      height: "70px",
       maxWidth: "100%",
     },
   });
@@ -500,7 +501,7 @@ function Pending() {
                                 onClose={() => setOpen(false)}
                                 aria-labelledby="modal-modal-title"
                                 aria-describedby="modal-modal-description"
-                                sx={{ opacity: 0.1 }}
+                                // sx={{ opacity: 0.1 }}
                               >
                                 <Box
                                   style={{
@@ -543,7 +544,7 @@ function Pending() {
                               onClose={() => setOpen2(false)}
                               aria-labelledby="modal-modal-title"
                               aria-describedby="modal-modal-description"
-                              sx={{ opacity: 0.1, zIndex: 999 }}
+                              sx={{ zIndex: 999 }}
                             >
                               <Box sx={modal.approvestyle}>
                                 <Typography
@@ -591,7 +592,7 @@ function Pending() {
                                 onClose={() => setOpen3(false)}
                                 aria-labelledby="modal-modal-title"
                                 aria-describedby="modal-modal-description"
-                                sx={{ opacity: 0.1 }}
+                                // sx={{ opacity: 0.1 }}
                               >
                                 <Box
                                   style={{
@@ -827,7 +828,7 @@ function Pending() {
                               onClose={() => setOpen4(false)}
                               aria-labelledby="modal-modal-title"
                               aria-describedby="modal-modal-description"
-                              sx={{ opacity: 0.1, zIndex: 999 }}
+                              sx={{ zIndex: 999 }}
                             >
                               <Box sx={modal.approvestyle}>
                                 <Typography
@@ -862,7 +863,7 @@ function Pending() {
                                       onClose={() => setOpen5(false)}
                                       aria-labelledby="modal-modal-title"
                                       aria-describedby="modal-modal-description"
-                                      sx={{ opacity: 0.7 }}
+                                      // sx={{ opacity: 0.7 }}
                                     >
                                       <Box sx={modal.declinestyle}>
                                         <Typography
