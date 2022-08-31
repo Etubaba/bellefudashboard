@@ -37,6 +37,7 @@ const FileUpload = () => {
   const [file, setFile] = useState("");
   const [read, setRead] = useState();
   const [preview, setPreview] = useState();
+  const [reload, setReload] = useState(0);
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
@@ -44,7 +45,7 @@ const FileUpload = () => {
     setPreview(URL.createObjectURL(file));
 
     const main = e.target.files;
-    console.log(main)
+
     for (let i = 0; i < main.length; i++) {
       let file1 = main[i];
       // console.log(file1.name);
@@ -52,7 +53,6 @@ const FileUpload = () => {
     }
   };
 
-  console.log('checking ')
   const upload = () => {
     const slide = new FormData();
     slide.append("slider_images", read);
@@ -65,14 +65,20 @@ const FileUpload = () => {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-
-    toast.success("Slider uploaded", {
-      position: "top-right",
-    });
-    window.location.reload(false)
-
+      .then((res) => {
+        console.log(res);
+        if (res.data.status) {
+          toast.success("Slider uploaded", {
+            position: "top-right",
+          });
+          window.location.reload(false);
+        } else {
+          toast.error("something went wrong", {
+            position: "top-right",
+          });
+        }
+      })
+      .catch((err) => console.log("catch", err));
   };
   return (
     <Box component="main">

@@ -150,7 +150,7 @@ function Active() {
       );
       setInitialProducts(data.data.data);
       setActiveProducts(data.data.data);
-      setTotalSearch(data.data.total)
+      setTotalSearch(data.data.total);
       setIsLoading(false);
     } catch (error) {
       console.log("error", error);
@@ -219,13 +219,10 @@ function Active() {
       .then((res) => {
         if (res.data.status) {
           setOpen2(false);
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
         }
       })
       .catch((err) => console.log(err));
-
-
-
 
     // await axios.post(`${APIDATA}change/pending/status`).then((res) => {});
   };
@@ -236,9 +233,11 @@ function Active() {
 
     if (input) {
       try {
-        const response = await axios.get(`${APIDATA}search/products/${input.toLocaleLowerCase()}`);
+        const response = await axios.get(
+          `${APIDATA}search/products/${input.toLocaleLowerCase()}`
+        );
         setActiveProducts(response.data.data.data);
-        setTotalSearch(response.data.total)
+        setTotalSearch(response.data.total);
       } catch (error) {
         console.log(`Search error due to: ${error.message}`);
       }
@@ -246,10 +245,7 @@ function Active() {
       setActiveProducts(initailProducts);
       setTotalSearch(30);
     }
-
   };
-
-
 
   return (
     <div className={css(lolo.container)}>
@@ -357,7 +353,7 @@ function Active() {
                           <Grid item xs={3} sx={{ paddingLeft: 0 }}>
                             <Item>
                               <img
-                                src={`${ProductImageUrl}${product?.image}`}
+                                src={`${ProductImageUrl}${product?.images[0]}`}
                                 alt="iuujhbb"
                                 className={css(lolo.productImg)}
                               />
@@ -495,7 +491,6 @@ function Active() {
                                   <ProductModal
                                     title="Active"
                                     open={open}
-
                                     setOpen={setOpen}
                                     productDetails={product}
                                     status="Active"
@@ -588,7 +583,7 @@ function Active() {
                                     onClose={() => setOpen3(false)}
                                     aria-labelledby="modal-modal-title"
                                     aria-describedby="modal-modal-description"
-                                  // sx={{ opacity: 0.1 }}
+                                    // sx={{ opacity: 0.1 }}
                                   >
                                     <Box
                                       sx={{
@@ -796,32 +791,32 @@ function Active() {
               paddingRight: "20px",
             }}
           >
-            {(totalSearch > 25) &&
+            {totalSearch > 25 && (
               <IconButton onClick={() => setPage(page - 1)}>
-                <div
-                  style={{ display: "flex", alignItems: "center" }}
-
-                ><Icons.ArrowBackIos
-                    sx={{ cursor: "pointer", color: "#76BA1B", marginLeft: "5px" }}
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Icons.ArrowBackIos
+                    sx={{
+                      cursor: "pointer",
+                      color: "#76BA1B",
+                      marginLeft: "5px",
+                    }}
                   />
                   <label>Back</label>
-
                 </div>
               </IconButton>
-            }
+            )}
 
-            {(totalSearch > 25) && <Typography variant='h5'> Page  :  {page}</Typography>}
+            {totalSearch > 25 && (
+              <Typography variant="h5"> Page : {page}</Typography>
+            )}
 
-            {((activeProducts.length > 0) && (totalSearch > 25)) ? (
+            {activeProducts.length > 0 && totalSearch > 25 ? (
               <IconButton onClick={() => setPage(page + 1)}>
-                <div
-                  style={{ display: "flex", alignItems: "center" }}
-
-                ><label>Next</label>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <label>Next</label>
                   <Icons.ArrowForwardIos
                     sx={{ cursor: "pointer", color: "#76BA1B" }}
                   />
-
                 </div>
               </IconButton>
             ) : null}

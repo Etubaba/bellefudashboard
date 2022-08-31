@@ -87,14 +87,13 @@ export default function Review() {
       .then((res) => {
         if (res.data.status) {
           setOpen2(false);
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
           toast.success("Review Approved", {
             position: "top-right",
           });
         }
       })
       .catch((err) => console.log(err));
-
   };
 
   // When review is undergoing probing
@@ -116,14 +115,13 @@ export default function Review() {
         if (res.data.status) {
           setOpen2(false);
 
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
           toast.info("Review undergoing probe", {
             position: "top-right",
-          })
+          });
         }
       })
       .catch((err) => console.log(err));
-    ;
   };
 
   // review delete
@@ -142,7 +140,8 @@ export default function Review() {
     })
       .then((res) => {
         if (res.data.status) {
-          setOpen(false); setReload(prev => prev + 1);
+          setOpen(false);
+          setReload((prev) => prev + 1);
           toast.error("Review Deleted", {
             position: "top-right",
           });
@@ -240,7 +239,7 @@ export default function Review() {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {moment(row.created_at).format("ll")}
+                      {moment(row.reviewedat).format("ll")}
                     </TableCell>
                     <TableCell> {row.title} </TableCell>
                     <TableCell>#{row.id}</TableCell>

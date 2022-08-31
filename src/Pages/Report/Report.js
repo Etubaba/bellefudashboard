@@ -44,7 +44,7 @@ import ReportModal from "./ReportModal";
 export default function Report() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [report, setReport] = useState(null);
+  const [report, setReport] = useState([]);
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [pushId, setPushId] = useState(null);
@@ -84,8 +84,6 @@ export default function Report() {
 
   // const filteredReport = report.filter((filterdP) => filterdP.inorganic_views === )
 
-
-
   //handling approve report
   const handleApprove = () => {
     const formDatas = new FormData();
@@ -104,15 +102,13 @@ export default function Report() {
       .then((res) => {
         if (res.data.status) {
           setOpen3(false);
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
           toast.success("Report Approved", {
             position: "top-right",
           });
         }
       })
       .catch((err) => console.log(err));
-
-
   };
 
   //handle probe report
@@ -133,17 +129,14 @@ export default function Report() {
       .then((res) => {
         if (res.data.status) {
           setOpen3(false);
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
           toast.success("Report Moved To Probing", {
             position: "top-right",
           });
         }
       })
       .catch((err) => console.log(err));
-
-
   };
-
 
   //handle report delete method
   const handleDelete = () => {
@@ -161,7 +154,7 @@ export default function Report() {
     })
       .then((res) => {
         if (res.data.statu) {
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
           toast.error("Report Deleted", {
             position: "top-right",
           });
@@ -170,8 +163,6 @@ export default function Report() {
         }
       })
       .catch((err) => console.log(err));
-
-
   };
 
   const modalstyle = {
@@ -254,7 +245,7 @@ export default function Report() {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {moment(row.created_at).format("l")}
+                      {moment(row.reportedat).format("l")}
                     </TableCell>
                     <TableCell> {row.title} </TableCell>
                     <TableCell> #{row.inorganic_views} </TableCell>

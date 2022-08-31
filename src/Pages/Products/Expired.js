@@ -160,9 +160,11 @@ function Expired() {
 
     if (input) {
       try {
-        const response = await axios.get(`${APIDATA}search/products/${input.toLocaleLowerCase()}`);
+        const response = await axios.get(
+          `${APIDATA}search/products/${input.toLocaleLowerCase()}`
+        );
         setAllProduct(response.data.data.data);
-        setTotalSearch(response.data.data.total)
+        setTotalSearch(response.data.data.total);
       } catch (error) {
         console.log(`Search error due to: ${error.message}`);
       }
@@ -170,7 +172,6 @@ function Expired() {
       setAllProduct(initailProducts);
       setTotalSearch(30);
     }
-
   };
 
   return (
@@ -276,7 +277,7 @@ function Expired() {
                         <Grid item xs={3} sx={{ paddingLeft: 0 }}>
                           <Item>
                             <img
-                              src={`${ProductImageUrl}${product?.image}`}
+                              src={`${ProductImageUrl}${product?.images[0]}`}
                               alt="iuujhbb"
                               className={css(lolo.productImg)}
                             />
@@ -436,27 +437,27 @@ function Expired() {
               paddingRight: "20px",
             }}
           >
-            {(totalSearch > 25) &&
+            {totalSearch > 25 && (
               <IconButton onClick={() => setPage(page - 1)}>
-                <div
-                  style={{ display: "flex", alignItems: "center" }}
-
-                >
+                <div style={{ display: "flex", alignItems: "center" }}>
                   <label>Back</label>
                   <Icons.ArrowBackIos
-                    sx={{ cursor: "pointer", color: "#76BA1B", marginLeft: "5px" }}
+                    sx={{
+                      cursor: "pointer",
+                      color: "#76BA1B",
+                      marginLeft: "5px",
+                    }}
                   />
                 </div>
               </IconButton>
-            }
+            )}
 
-            {(totalSearch > 25) && <Typography variant='h5'> Page  :  {page}</Typography>}
-            {((allProduct.length > 0) && (totalSearch > 25)) ? (
+            {totalSearch > 25 && (
+              <Typography variant="h5"> Page : {page}</Typography>
+            )}
+            {allProduct.length > 0 && totalSearch > 25 ? (
               <IconButton onClick={() => setPage(page + 1)}>
-                <div
-                  style={{ display: "flex", alignItems: "center" }}
-
-                >
+                <div style={{ display: "flex", alignItems: "center" }}>
                   <Icons.ArrowForwardIos
                     sx={{ cursor: "pointer", color: "#76BA1B" }}
                   />

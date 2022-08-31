@@ -227,16 +227,13 @@ function Pending() {
       .then((res) => {
         if (res.data.status) {
           setOpen2(false);
-          setReload(prevState => prevState + 1);
+          setReload((prevState) => prevState + 1);
           toast.success("Product Updated", {
             position: "top-right",
           });
         }
-
       })
       .catch((err) => console.log(err));
-
-
 
     // await axios.post(`${APIDATA}change/pending/status`).then((res) => {});
   };
@@ -260,15 +257,13 @@ function Pending() {
       .then((res) => {
         if (res.data.status) {
           setOpen3(false);
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
           toast.success("Product Approved", {
             position: "top-right",
           });
         }
       })
       .catch((err) => console.log(err));
-
-
   };
 
   //handling decline
@@ -292,15 +287,13 @@ function Pending() {
         if (res.data.status) {
           setOpen3(false);
           setReason("");
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
           toast.error("Product Declined", {
             position: "top-right",
           });
         }
       })
       .catch((err) => console.log(err));
-
-
   };
 
   return (
@@ -395,7 +388,7 @@ function Pending() {
                           <Grid item xs={3} sx={{ paddingLeft: 0 }}>
                             <Item>
                               <img
-                                src={`${ProductImageUrl}${product?.image}`}
+                                src={`${ProductImageUrl}${product?.images[0]}`}
                                 alt="iuujhbb"
                                 className={css(lolo.productImg)}
                               />
@@ -629,7 +622,7 @@ function Pending() {
                                     onClose={() => setOpen3(false)}
                                     aria-labelledby="modal-modal-title"
                                     aria-describedby="modal-modal-description"
-                                  // sx={{ opacity: 0.1 }}
+                                    // sx={{ opacity: 0.1 }}
                                   >
                                     <Box
                                       sx={{
