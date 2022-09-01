@@ -7,15 +7,12 @@ import TableRow from "@mui/material/TableRow";
 import Loader from "../../Loader";
 import moment from "moment";
 
-import { loginStatus } from '../../Features/LoginSlice';
+import { loginStatus } from "../../Features/LoginSlice";
 import { useDispatch, useSelector } from "react-redux";
-
 
 import UserData from "./UserData";
 import Activate from "./Activate";
 import Deactivate from "./Deactivate";
-
-
 
 import Modal from "@mui/material/Modal";
 import FilterListIcon from "@mui/icons-material/FilterList";
@@ -45,19 +42,23 @@ import { useState, useEffect } from "react";
 
 import * as Icons from "@mui/icons-material";
 
-import { PageTitle, CircularIndeterminate, APIDATA } from "../../Constant";
+import {
+  PageTitle,
+  CircularIndeterminate,
+  APIDATA,
+  BASE_URL,
+} from "../../Constant";
 import axios from "axios";
 
 import { toast } from "react-toastify";
 
 export default function AdminList() {
-
-  const statusChange = useSelector(loginStatus)
+  const statusChange = useSelector(loginStatus);
   console.log(statusChange.userStatus);
   const [lolo1, setLolo1] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [program, setProgram] = useState(null);
+  const [program, setProgram] = useState([]);
   const [userholder, setUserholder] = useState(null);
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
@@ -69,26 +70,31 @@ export default function AdminList() {
   const [target, setTarget] = useState(null);
   const [userdataholder, setUserdataholder] = useState("");
 
-
   const [activeuserid, setActiveuserid] = useState("");
   const [inactiveuserid, setInactiveuserid] = useState("");
-
 
   //   Modal states
   const [modalopen, setModalopen] = useState(false);
   const [modalopen2, setModalopen2] = useState(false);
   const [modalopen3, setModalopen3] = useState(false);
 
-  const handleOpen1 = (event) =>{ setModalopen(true);setUserdataholder(event)} 
-  const handleClose2 = () =>  setModalopen(false);
+  const handleOpen1 = (event) => {
+    setModalopen(true);
+    setUserdataholder(event);
+  };
+  const handleClose2 = () => setModalopen(false);
 
+  const handleOpen2 = (event) => {
+    setModalopen2(true);
+    setActiveuserid(event);
+  };
+  const handleClose3 = () => setModalopen2(false);
 
-  const handleOpen2 = (event) =>{ setModalopen2(true);setActiveuserid(event)} 
-  const handleClose3 = () =>  setModalopen2(false);
-
-
-  const handleOpen3 = (event) =>{ setModalopen3(true);setInactiveuserid(event)} 
-  const handleClose4 = () =>  setModalopen3(false);
+  const handleOpen3 = (event) => {
+    setModalopen3(true);
+    setInactiveuserid(event);
+  };
+  const handleClose4 = () => setModalopen3(false);
 
   // filter states
   const [countrys, setCountrys] = useState("");
@@ -131,16 +137,6 @@ export default function AdminList() {
     );
   };
 
-  const toastCaller = () => {
-    toast.error(
-      "There's no user for the Filtered Name/selected country select Show-All and try Again",
-      {
-        position: "top-center",
-        toastId: "success1",
-      }
-    );
-  };
-
   // #####################
   const [loader, setLoader] = useState(false);
 
@@ -166,10 +162,9 @@ export default function AdminList() {
 
   //   console.log(program)
   // useEffect calls###########################
-useEffect(()=>{
-  setLolo1(statusChange.userStatus);
-
-},[]);
+  useEffect(() => {
+    setLolo1(statusChange.userStatus);
+  }, []);
   useEffect(() => {
     setLoader(true);
     const getprogram = async () => {
@@ -184,8 +179,7 @@ useEffect(()=>{
 
     getprogram();
   }, []);
-  //   #################
-  console.log(lolo1)
+
   useEffect(() => {
     const getcountries = async () => {
       await axios
@@ -198,10 +192,6 @@ useEffect(()=>{
   }, []);
 
   // ########################################
-
-  
- 
-
 
   return (
     <Box>
@@ -360,7 +350,7 @@ useEffect(()=>{
             {program === null ? (
               <Loader isLoading={loader} />
             ) : program.length === 0 ? (
-              toastCaller()
+              console.log()
             ) : (
               program
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -371,8 +361,8 @@ useEffect(()=>{
                   >
                     <TableCell component="th" scope="row">
                       <img
-                        src={`https://bellefu.inmotionhub.xyz/images/user/${row.avatar}`}
-                        style={{ width: 100, height: 100 }}
+                        src={`${BASE_URL}get/user/images/${row.avatar}`}
+                        style={{ width: 80, height: 80 }}
                         alt="Error"
                       />
                     </TableCell>
@@ -387,7 +377,7 @@ useEffect(()=>{
                           mb: 0.4,
                           textAlign: "center",
                           p: 0.5,
-                          bgcolor:[row.status==="active"?"orange":"red"] ,
+                          bgcolor: [row.status === "active" ? "orange" : "red"],
                           color: "#ffff",
                         }}
                       >
@@ -409,41 +399,34 @@ useEffect(()=>{
                     <TableCell>
                       <Box>
                         <Tooltip title="View">
-                          <IconButton
-                            onClick={()=>handleOpen1(row)}
-
-                          >
+                          <IconButton onClick={() => handleOpen1(row)}>
                             <Icons.RemoveRedEyeOutlined />
                           </IconButton>
                         </Tooltip>
 
                         <Tooltip title="Activate">
-                          <IconButton
-                          onClick={()=>handleOpen2(row)}
-                          >
+                          <IconButton onClick={() => handleOpen2(row)}>
                             <Icons.LockOpenOutlined />
                           </IconButton>
                         </Tooltip>
                         <Tooltip title="Deactivate">
-                          <IconButton
-                          onClick={()=>handleOpen3(row)}
-                          >
+                          <IconButton onClick={() => handleOpen3(row)}>
                             <Icons.LockOutlined />
                           </IconButton>
                         </Tooltip>
 
                         <Tooltip title="Delete">
                           <IconButton
-                        //   onClick={() => {
-                        //       setPushId(row.id)
-                        //       setOpen2(true)
-                        //   }}
+                          //   onClick={() => {
+                          //       setPushId(row.id)
+                          //       setOpen2(true)
+                          //   }}
                           >
                             <Icons.DeleteOutline />
                           </IconButton>
                         </Tooltip>
                         <Modal
-                        sx={{opacity:0.25}}
+                          sx={{ opacity: 0.25 }}
                           open={modalopen}
                           onClose={handleClose2}
                           aria-labelledby="modal-modal-title"
@@ -467,7 +450,7 @@ useEffect(()=>{
                           </Paper>
                         </Modal>
                         <Modal
-                        sx={{opacity:0.25}}
+                          sx={{ opacity: 0.25 }}
                           open={modalopen2}
                           onClose={handleClose3}
                           aria-labelledby="modal-modal-title"
@@ -487,11 +470,14 @@ useEffect(()=>{
                               borderRadius: 8,
                             }}
                           >
-                            <Activate  close={handleClose3} active={activeuserid}/>
+                            <Activate
+                              close={handleClose3}
+                              active={activeuserid}
+                            />
                           </Paper>
                         </Modal>
                         <Modal
-                        sx={{opacity:0.25}}
+                          sx={{ opacity: 0.25 }}
                           open={modalopen3}
                           onClose={handleClose4}
                           aria-labelledby="modal-modal-title"
@@ -511,7 +497,10 @@ useEffect(()=>{
                               borderRadius: 8,
                             }}
                           >
-                            <Deactivate close={handleClose4} inactive={inactiveuserid}/>
+                            <Deactivate
+                              close={handleClose4}
+                              inactive={inactiveuserid}
+                            />
                           </Paper>
                         </Modal>
                       </Box>

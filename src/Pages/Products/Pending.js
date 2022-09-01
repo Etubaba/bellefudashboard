@@ -118,7 +118,8 @@ function Pending() {
       fontWeight: "bold",
     },
     productImg: {
-      width: "140px",
+      width: "70px",
+      height: "70px",
       maxWidth: "100%",
     },
   });
@@ -227,16 +228,13 @@ function Pending() {
       .then((res) => {
         if (res.data.status) {
           setOpen2(false);
-          setReload(prevState => prevState + 1);
+          setReload((prevState) => prevState + 1);
           toast.success("Product Updated", {
             position: "top-right",
           });
         }
-
       })
       .catch((err) => console.log(err));
-
-
 
     // await axios.post(`${APIDATA}change/pending/status`).then((res) => {});
   };
@@ -260,15 +258,13 @@ function Pending() {
       .then((res) => {
         if (res.data.status) {
           setOpen3(false);
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
           toast.success("Product Approved", {
             position: "top-right",
           });
         }
       })
       .catch((err) => console.log(err));
-
-
   };
 
   //handling decline
@@ -292,15 +288,13 @@ function Pending() {
         if (res.data.status) {
           setOpen3(false);
           setReason("");
-          setReload(prev => prev + 1)
+          setReload((prev) => prev + 1);
           toast.error("Product Declined", {
             position: "top-right",
           });
         }
       })
       .catch((err) => console.log(err));
-
-
   };
 
   return (
@@ -395,7 +389,7 @@ function Pending() {
                           <Grid item xs={3} sx={{ paddingLeft: 0 }}>
                             <Item>
                               <img
-                                src={`${ProductImageUrl}${product?.image}`}
+                                src={`${ProductImageUrl}${product?.images[0]}`}
                                 alt="iuujhbb"
                                 className={css(lolo.productImg)}
                               />
@@ -507,7 +501,7 @@ function Pending() {
                                 onClose={() => setOpen(false)}
                                 aria-labelledby="modal-modal-title"
                                 aria-describedby="modal-modal-description"
-                                sx={{ opacity: 0.1 }}
+                                // sx={{ opacity: 0.1 }}
                               >
                                 <Box
                                   style={{
@@ -550,7 +544,7 @@ function Pending() {
                               onClose={() => setOpen2(false)}
                               aria-labelledby="modal-modal-title"
                               aria-describedby="modal-modal-description"
-                              sx={{ opacity: 0.1, zIndex: 999 }}
+                              sx={{ zIndex: 999 }}
                             >
                               <Box sx={modal.approvestyle}>
                                 <Typography
@@ -598,7 +592,7 @@ function Pending() {
                                 onClose={() => setOpen3(false)}
                                 aria-labelledby="modal-modal-title"
                                 aria-describedby="modal-modal-description"
-                                sx={{ opacity: 0.1 }}
+                                // sx={{ opacity: 0.1 }}
                               >
                                 <Box
                                   style={{
@@ -629,7 +623,7 @@ function Pending() {
                                     onClose={() => setOpen3(false)}
                                     aria-labelledby="modal-modal-title"
                                     aria-describedby="modal-modal-description"
-                                  // sx={{ opacity: 0.1 }}
+                                    // sx={{ opacity: 0.1 }}
                                   >
                                     <Box
                                       sx={{
@@ -834,7 +828,7 @@ function Pending() {
                               onClose={() => setOpen4(false)}
                               aria-labelledby="modal-modal-title"
                               aria-describedby="modal-modal-description"
-                              sx={{ opacity: 0.1, zIndex: 999 }}
+                              sx={{ zIndex: 999 }}
                             >
                               <Box sx={modal.approvestyle}>
                                 <Typography
@@ -869,7 +863,7 @@ function Pending() {
                                       onClose={() => setOpen5(false)}
                                       aria-labelledby="modal-modal-title"
                                       aria-describedby="modal-modal-description"
-                                      sx={{ opacity: 0.7 }}
+                                      // sx={{ opacity: 0.7 }}
                                     >
                                       <Box sx={modal.declinestyle}>
                                         <Typography

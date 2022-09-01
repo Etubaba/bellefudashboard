@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PageTitle, colors, APIDATA } from "../../Constant";
+import { PageTitle, colors, APIDATA, BASE_URL } from "../../Constant";
 import { loginStatus, updateProfileDetails } from "../../Features/LoginSlice";
 import * as Icons from "@mui/icons-material";
 
@@ -40,7 +40,6 @@ const UserData = (props) => {
   const [modalopen2, setModalopen2] = useState(false);
   const [modalopen3, setModalopen3] = useState(false);
 
-  
   const handleOpen2 = () => {
     setModalopen2(true);
   };
@@ -64,7 +63,7 @@ const UserData = (props) => {
         <div>
           <Avatar
             alt="profile image"
-            src={`https://bellefu.inmotionhub.xyz/admin/profile/${activeuserid.avatar}`}
+            src={`${BASE_URL}admin/profile/${activeuserid.avatar}`}
             variant="circular"
             sx={{
               display: "inline-block",
