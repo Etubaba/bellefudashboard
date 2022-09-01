@@ -7,11 +7,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import { ProductImageUrl } from "../../Constant";
 
-
-
 const ProductModal = ({ open, setOpen, id, productDetails, status, title }) => {
   return (
-    <div>
+    <div style={{ overflowY: "scroll" }}>
       <Modal
         key={id}
         hideBackdrop
